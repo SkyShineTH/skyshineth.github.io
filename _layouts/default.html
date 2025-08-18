@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <header>
+        <h1>{{ site.title }}</h1>
+        {% if site.logo %}
+          <img src="{{ site.logo | relative_url }}" alt="Logo" style="max-width:150px;">
+        {% endif %}
+        <p>{{ site.description }}</p>
+
+        <!-- <p>
+          {% if site.github.username %}
+            <a href="https://github.com/{{ site.github.username }}">GitHub</a>
+          {% endif %}
+          {% if site.social_links.website %}
+            <a href="{{ site.social_links.website }}">Website</a>
+          {% endif %}
+        </p> -->
+      </header>
+
+      <section>
+        {{ content }}
+      </section>
+
+      <footer>
+        <p><small>© 2025 Fasai Utawan · Powered by GitHub Pages</small></p>
+      </footer>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+title: "Fasai Utawan"
+description: >
+  Data Science & Software Innovation
+  with hands-on experience in AI system development and deployment.
+  Skilled in building end-to-end ML pipelines from model development to production integration.
+  Strong foundation in computer vision, statistical analysis, and full-stack development,
+  with experience applying AI solutions to solve real-world problems.
+
+theme: jekyll-theme-minimal
+
+logo: /assets/images/IMG_0034.jpg
+show_downloads: false
+google_analytics: 
+
+social_links:
+  github: skyshineth
+  website: https://skyshineth.github.io
+
+collections:
+  projects:
+    output: true
