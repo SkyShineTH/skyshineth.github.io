@@ -15,10 +15,9 @@ Bangkok, Thailand · +66 9432 86466 · oat404404oat@gmail.com · [skyshineth.git
 - <a class="repo-link" href="{{ project.link }}">
     {{ project.repo_label | default: "View Repo" }}
   </a>
-
----
 {% endfor %}
 
+---
 
 <div class="section"></div>
 
