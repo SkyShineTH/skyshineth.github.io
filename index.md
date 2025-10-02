@@ -22,13 +22,14 @@ fasai.utawan@gmail.com · [Github](https://github.com/SkyShineTH)
 <div class="section"></div>
 
 ## Technical Skills
-**Programming Languages:** Python, JavaScript, Dart, SQL, C/C++ (Basic)
-**AI/ML & Data Science:** TensorFlow, Keras, OpenCV, Scikit-learn
-**Mobile Development:** Flutter
-**Web Development:** Django, FastAPI, REST APIs, HTML/CSS, JavaScript 
-**Cloud & Database:** PostgreSQL, MySQL, AWS
-**DevOps & Tools:** Docker, Git, System Architecture, Jupyter Notebook
-**Hardware Integration:** Raspberry Pi, Camera Systems [face recognition project](https://github.com/oatin/Face-Recognition-Attendance)
+
+**Programming Languages:** Python, JavaScript, Dart, SQL, C/C++ (Basic)  
+**AI/ML & Data Science:** TensorFlow, Keras, OpenCV, Scikit-learn  
+**Mobile Development:** Flutter  
+**Web Development:** Django, FastAPI, REST APIs, HTML/CSS, JavaScript  
+**Cloud & Database:** PostgreSQL, MySQL, AWS  
+**DevOps & Tools:** Docker, Git, System Architecture, Jupyter Notebook  
+**Hardware Integration:** Raspberry Pi, Camera Systems [face recognition project](https://github.com/oatin/Face-Recognition-Attendance)  
 
 <div class="section"></div>
 
