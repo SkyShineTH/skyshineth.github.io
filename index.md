@@ -3,7 +3,7 @@ layout: default
 title: "Fasai Utawan"
 ---
 **Data Science & Software Innovation student**<br />
-Bangkok, Thailand · +66 9432 86466 · oat404404oat@gmail.com · [skyshineth.github.io](https://skyshineth.github.io)
+fasai.utawan@gmail.com · [Github](https://github.com/SkyShineTH)
 
 ---
 
@@ -22,31 +22,17 @@ Bangkok, Thailand · +66 9432 86466 · oat404404oat@gmail.com · [skyshineth.git
 <div class="section"></div>
 
 ## Technical Skills
-**Programming:** Python, JavaScript, C/C++ (Basic)  
-**AI/ML & DS:** TensorFlow, Keras, OpenCV, scikit-learn, Computer Vision, Deep Learning, Statistical Analysis  
-**Web/Frameworks:** Django, FastAPI, REST APIs  
-**Databases:** PostgreSQL, MySQL  
-**DevOps & Tools:** Docker, Git, System Architecture
-
-<div class="section"></div>
-
-## Education
-**B.Sc. Data Science and Software Innovation**, Ubon Ratchathani University  
-*Jun 2022 – Present*
-
-<div class="section"></div>
-
-## Languages
-Thai (Native), English – B1 (Good reading & listening, basic speaking)
-
-<div class="section"></div>
-
-## Awards / Activities
-- 3rd Place Winner, **UBU Data Analytics Hackathon (2024)**
+**Programming Languages:** Python, JavaScript, Dart, SQL, C/C++ (Basic)
+**AI/ML & Data Science:** TensorFlow, Keras, OpenCV, Scikit-learn
+**Mobile Development:** Flutter
+**Web Development:** Django, FastAPI, REST APIs, HTML/CSS, JavaScript 
+**Cloud & Database:** PostgreSQL, MySQL, AWS
+**DevOps & Tools:** Docker, Git, System Architecture, Jupyter Notebook
+**Hardware Integration:** Raspberry Pi, Camera Systems [face recognition project](https://github.com/oatin/Face-Recognition-Attendance)
 
 <div class="section"></div>
 
 ## Links
 - GitHub: https://github.com/skyshineth
 - Personal site: https://skyshineth.github.io
-- LinkedIn: 
+- LinkedIn: linkedin.com/in/fasai-utawan-894b82386
