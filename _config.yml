@@ -19,3 +19,6 @@ social_links:
 collections:
   projects:
     output: true
+
+sass:
+  style: compressed

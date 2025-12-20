@@ -3,7 +3,7 @@ layout: default
 title: "Fasai Utawan"
 ---
 **Data Science & Software Innovation student**<br />
-fasai.utawan@gmail.com · [Github](https://github.com/SkyShineTH)
+fasai.utawan@gmail.com · [Github](https://github.com/SkyShineTH) · [View CV](/cv/)
 
 ---
 
@@ -36,4 +36,5 @@ fasai.utawan@gmail.com · [Github](https://github.com/SkyShineTH)
 ## Links
 - GitHub: https://github.com/skyshineth
 - Personal site: https://skyshineth.github.io
+- CV: [View Full CV](/cv/)
 - LinkedIn: linkedin.com/in/fasai-utawan-894b82386
