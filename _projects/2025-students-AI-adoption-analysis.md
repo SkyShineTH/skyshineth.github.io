@@ -1,5 +1,6 @@
 ---
 title: "Indonesian Students AI Adoption Analysis"
+category: "Data & AI"
 stack: [Python, Pandas, Seaborn, Scikit-learn, Statsmodels]
 link: "https://github.com/SkyShineTH/Indonesian-Students-AI-Adoption-Analysis"
 repo_label: "View Repo on GitHub"

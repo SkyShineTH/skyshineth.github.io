@@ -16,14 +16,14 @@ permalink: /cv/
 
 ## Work Experience
 
-### DevOps Engineering Intern
-*Present*
+### DevOps Engineering Intern — Artery Partner Co., Ltd.
+*Nov 2025 - Mar 2026*
 
-- Developing Google Tasks integration with Frappe Framework to streamline project management workflows and enhance team collaboration
-- Implementing and maintaining CI/CD pipelines using GitLab for automated testing, building, and deployment processes
-- Managing and monitoring cloud infrastructure on AWS and Google Cloud Platform to ensure high availability and performance
-- Utilizing Lens/OpenLens for Kubernetes cluster management, monitoring, and troubleshooting containerized applications
-- Collaborating on infrastructure automation strategies and containerization best practices to improve deployment efficiency
+- Developed internal tool integrations to streamline project management workflows and enhance team collaboration
+- Implemented and maintained CI/CD pipelines for automated testing, building, and deployment processes
+- Managed and monitored cloud infrastructure to ensure high availability and performance
+- Administered Kubernetes clusters for monitoring and troubleshooting containerized applications
+- Collaborated on infrastructure automation strategies and containerization best practices to improve deployment efficiency
 
 ---
 
@@ -35,7 +35,7 @@ permalink: /cv/
 
 **Web & Mobile Development:** React, Next.js, Flutter, Django, FastAPI, REST APIs, HTML/CSS
 
-**DevOps & Infrastructure:** Docker, GitLab CI/CD, Lens/OpenLens, Kubernetes, Git, System Architecture
+**DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
 
 **Cloud Platforms:** AWS (Amazon Web Services), Google Cloud Platform (GCP)
 
@@ -48,14 +48,6 @@ permalink: /cv/
 ---
 
 ## Projects
-
-### Google Tasks Integration with Frappe Framework
-*Current* | **Technologies:** Frappe Framework, Python, REST APIs, Google Cloud APIs, Docker
-
-- Integrating Google Tasks API with Frappe Framework to enable seamless task synchronization and project management
-- Designing RESTful API endpoints for bidirectional data flow between Google Tasks and Frappe
-- Implementing authentication and authorization mechanisms using OAuth 2.0 for secure API access
-- Containerizing the application using Docker for consistent deployment across development and production environments
 
 ### FootyBrain - Football Analytics Platform
 [GitHub](https://github.com/SkyShineTH/FootyBrain) | **Technologies:** Python, FastAPI, Next.js, TypeScript, PostgreSQL, Docker, Generative AI
@@ -92,6 +84,14 @@ permalink: /cv/
 - Integrated Web3.py for blockchain interaction and transaction management
 - Containerized the application using Docker for simplified deployment and scalability
 
+### Indonesian Students AI Adoption Analysis
+[GitHub](https://github.com/SkyShineTH/Indonesian-Students-AI-Adoption-Analysis) | **Technologies:** Python, Pandas, Seaborn, Scikit-learn, Statsmodels
+
+- Analyzed survey data of Indonesian university students to understand AI adoption, challenges, and motivations
+- Identified key factors influencing AI usage (Performance Expectancy & Challenges of Use)
+- Applied clustering techniques to segment users into 2 main behavioral groups
+- Performed statistical analysis using Statsmodels for hypothesis testing and regression
+
 ### Call Taxi Website
 **Technologies:** Django, Leaflet.js API, PostgreSQL
 
@@ -111,7 +111,7 @@ permalink: /cv/
 - Presented data-driven solutions for Digital University transformation initiatives
 - Addressed the challenge: "How can we develop new services to enhance information systems supporting Digital University through Data Analytics and Visualizations?"
 
-### UBU Startup Academy 2024
+### UBU Startup Academy
 *December 2023*
 
 - Completed entrepreneurial thinking and business planning training program

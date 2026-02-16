@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ================================ */
+    /*  RESET & BASE                    */
+    /* ================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background: #fafafa;
+      color: #1a1a1a;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* ================================ */
+    /*  CSS VARIABLES                   */
+    /* ================================ */
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --text-sec: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+
+    /* ================================ */
+    /*  CONTENT WRAPPER                 */
+    /* ================================ */
+    .content-wrapper {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ================================ */
+    /*  HERO                            */
+    /* ================================ */
+    .hero-section {
+      padding: 80px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-sec);
+      margin-bottom: 22px;
+      font-weight: 400;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+    }
+    .hero-meta a {
+      color: var(--accent);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .hero-meta a:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    /* ================================ */
+    /*  SECTION TITLES                  */
+    /* ================================ */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    .title-num {
+      color: var(--accent);
+      margin-right: 4px;
+    }
+
+    /* ================================ */
+    /*  ABOUT                           */
+    /* ================================ */
+    .about-section {
+      padding: 44px 0;
+    }
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #374151;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+    .about-text p {
+      margin-bottom: 10px;
+    }
+
+    /* ================================ */
+    /*  PROJECTS                        */
+    /* ================================ */
+    .projects-section {
+      padding: 44px 0;
+    }
+    .projects-track {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 4px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .project-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .stack-badge {
+      display: inline-block;
+      padding: 2px 9px;
+      background: #f3f4f6;
+      border-radius: 6px;
+      font-size: 0.73rem;
+      color: var(--text-sec);
+      margin: 2px 2px;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-sec);
+      margin: 12px 0;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    /* ================================ */
+    /*  PROJECT FILTERS                 */
+    /* ================================ */
+    .project-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: transparent;
+      color: var(--text-sec);
+      font-family: inherit;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .project-count {
+      font-size: 0.82rem;
+      color: var(--text-sec);
+      margin-bottom: 16px;
+    }
+    .project-card.card-hidden {
+      display: none;
+    }
+    .show-more-btn {
+      display: block;
+      margin: 28px auto 0;
+      padding: 10px 28px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--accent);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .show-more-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* ================================ */
+    /*  SKILLS                          */
+    /* ================================ */
+    .skills-section {
+      padding: 44px 0;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+    .skill-category {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .skill-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      margin: 3px 2px;
+      font-size: 0.8rem;
+      background: #f3f4f6;
+      border-radius: 6px;
+      color: #374151;
+      transition: background 0.2s;
+    }
+    .skill-tag:hover {
+      background: #e5e7eb;
+    }
+
+    /* ================================ */
+    /*  CONTACT                         */
+    /* ================================ */
+    .contact-section {
+      padding: 44px 0;
+    }
+    .contact-text {
+      color: var(--text-sec);
+      margin-bottom: 20px;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .contact-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 2px 10px rgba(37,99,235,0.08);
+      text-decoration: none;
+    }
+    .contact-item i {
+      color: var(--accent);
+    }
+
+    /* ================================ */
+    /*  FOOTER                          */
+    /* ================================ */
+    .site-footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ================================ */
+    /*  RESPONSIVE                      */
+    /* ================================ */
+    @media (max-width: 768px) {
+      .hero-section { padding-top: 60px; }
+      .hero-title { font-size: 1.8rem; }
+      .projects-track { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .contact-links { flex-direction: column; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================ -->
+  <!--  MAIN CONTENT                    -->
+  <!-- ================================ -->
+  <main class="content-wrapper">
+
+    <!-- HERO -->
+    <section class="section hero-section" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">{{ page.title }}</h1>
+        <p class="hero-subtitle">{{ page.subtitle }}</p>
+        <div class="hero-meta">
+          {% if page.contact.email %}
+          <a href="mailto:{{ page.contact.email }}"><i class="fas fa-envelope"></i> {{ page.contact.email }}</a>
+          {% endif %}
+          {% if page.contact.github %}
+          <a href="{{ page.contact.github }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+          {% endif %}
+          {% if page.contact.linkedin %}
+          <a href="{{ page.contact.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          {% endif %}
+          {% if page.contact.cv %}
+          <a href="{{ page.contact.cv }}"><i class="fas fa-file-alt"></i> CV</a>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+      <h2 class="section-title"><span class="title-num">01.</span> About</h2>
+      <div class="about-text">{{ page.about | markdownify }}</div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section projects-section" id="projects">
+      <h2 class="section-title"><span class="title-num">02.</span> Projects</h2>
+
+      {% assign categories = site.projects | map: "category" | compact | uniq | sort %}
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {% for cat in categories %}
+        <button class="filter-btn" data-filter="{{ cat | slugify }}">{{ cat }}</button>
+        {% endfor %}
+      </div>
+
+      <p class="project-count" id="project-count"></p>
+
+      <div class="projects-track">
+        {% for project in site.projects reversed %}
+        <article class="project-card" data-category="{{ project.category | slugify }}">
+          <h3 class="project-name">{{ project.title }}</h3>
+          <div class="project-stack">
+            {% for s in project.stack %}<span class="stack-badge">{{ s }}</span>{% endfor %}
+          </div>
+          <div class="project-desc">{{ project.content | strip_html | truncatewords: 50 }}</div>
+          {% if project.link and project.link != "" %}
+          <a href="{{ project.link }}" class="project-link" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> {{ project.repo_label | default: "View Repo" }}
+          </a>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </div>
+
+      <button class="show-more-btn" id="show-more-btn" style="display:none;">Show All Projects</button>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills-section" id="skills">
+      <h2 class="section-title"><span class="title-num">03.</span> Technical Skills</h2>
+      <div class="skills-grid">
+        {% for group in page.skills %}
+        <div class="skill-group">
+          <h3 class="skill-category">{{ group.category }}</h3>
+          <div class="skill-tags">
+            {% for item in group.items %}<span class="skill-tag">{{ item }}</span>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+      <h2 class="section-title"><span class="title-num">04.</span> Get in Touch</h2>
+      <p class="contact-text">Feel free to reach out for collaboration or opportunities.</p>
+      <div class="contact-links">
+        {% if page.contact.email %}
+        <a href="mailto:{{ page.contact.email }}" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>{{ page.contact.email }}</span>
+        </a>
+        {% endif %}
+        {% if page.contact.github %}
+        <a href="{{ page.contact.github }}" class="contact-item" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        {% endif %}
+        {% if page.contact.linkedin %}
+        <a href="{{ page.contact.linkedin }}" class="contact-item" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        {% endif %}
+        {% if page.contact.cv %}
+        <a href="{{ page.contact.cv }}" class="contact-item">
+          <i class="fas fa-file-alt"></i>
+          <span>View Full CV</span>
+        </a>
+        {% endif %}
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>&copy; 2026 {{ page.title }} &middot; Powered by GitHub Pages</p>
+  </footer>
+
+  <!-- ================================ -->
+  <!--  SCRIPTS                         -->
+  <!-- ================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* Subtle section reveals */
+    gsap.utils.toArray('.section:not(.hero-section)').forEach(function(section) {
+      gsap.from(section, {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    /* Project cards stagger */
+    gsap.from('.project-card', {
+      opacity: 0,
+      y: 20,
+      stagger: 0.08,
+      duration: 0.5,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.projects-section',
+        start: 'top 82%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    /* Skill tags stagger */
+    gsap.from('.skill-tag', {
+      opacity: 0,
+      y: 10,
+      stagger: 0.02,
+      duration: 0.3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.skills-section',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    /* ============================== */
+    /*  PROJECT FILTER & SHOW MORE    */
+    /* ============================== */
+    (function() {
+      var INITIAL_COUNT = 4;
+      var filterBtns = document.querySelectorAll('.filter-btn');
+      var allCards = Array.prototype.slice.call(document.querySelectorAll('.project-card'));
+      var showMoreBtn = document.getElementById('show-more-btn');
+      var countEl = document.getElementById('project-count');
+      var currentFilter = 'all';
+      var expanded = false;
+
+      function getVisible() {
+        return allCards.filter(function(card) {
+          return currentFilter === 'all' || card.dataset.category === currentFilter;
+        });
+      }
+
+      function render() {
+        var visible = getVisible();
+        var limit = expanded ? visible.length : Math.min(INITIAL_COUNT, visible.length);
+
+        allCards.forEach(function(card) { card.classList.add('card-hidden'); });
+        for (var i = 0; i < limit; i++) { visible[i].classList.remove('card-hidden'); }
+
+        if (countEl) {
+          countEl.textContent = 'Showing ' + limit + ' of ' + visible.length + ' projects';
+        }
+
+        if (showMoreBtn) {
+          if (visible.length > INITIAL_COUNT && !expanded) {
+            showMoreBtn.style.display = 'block';
+            showMoreBtn.textContent = 'Show All ' + visible.length + ' Projects';
+          } else {
+            showMoreBtn.style.display = 'none';
+          }
+        }
+      }
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          expanded = false;
+          render();
+        });
+      });
+
+      if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+          expanded = true;
+          render();
+        });
+      }
+
+      render();
+    })();
+  </script>
+
+</body>
+</html>
