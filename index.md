@@ -4,7 +4,7 @@ title: "Fasai Utawan"
 subtitle: "DevOps Engineer | Data Science & Software Innovation"
 
 about: |
-  Data Science & Software Innovation student currently working as a DevOps Engineering Intern.
+  Data Science & Software Innovation student; recently completed a DevOps engineering internship at Artery Partner Co., Ltd.
   Experienced in building and maintaining CI/CD pipelines, managing cloud infrastructure (AWS, GCP),
   and orchestrating containerized applications with Docker and Kubernetes.
   Also skilled in end-to-end ML pipelines, computer vision, and full-stack development,
@@ -27,7 +27,7 @@ skills:
 contact:
   email: "fasai.utawan@gmail.com"
   github: "https://github.com/SkyShineTH"
-  linkedin: "https://linkedin.com/in/fasai-utawan-894b82386"
+  linkedin: "https://www.linkedin.com/in/fasai-utawan-894b82386"
   website: "https://skyshineth.github.io"
   cv: "/cv/"
 ---

@@ -59,6 +59,14 @@ permalink: /cv/
 - Designed ETL (Extract, Transform, Load) pipelines for processing large-scale football datasets
 - Utilized Docker Compose for orchestrating multi-container application deployment
 
+### Shipyard — GitOps Platform
+[GitHub](https://github.com/SkyShineTH/Shipyard) | **Technologies:** React, Vite, Go, Gin, GORM, PostgreSQL, Docker, Kubernetes, Helm, Argo CD, Argo Rollouts, GitHub Actions, GHCR
+
+- Built a full-stack GitOps portfolio platform with a React (Vite) frontend and Go microservices (JWT auth, REST APIs) backed by PostgreSQL
+- Packaged services with Helm charts and synced deployments through Argo CD; used Argo Rollouts for canary-style progressive delivery on the todo service
+- Implemented CI with GitHub Actions per service: build Docker images, push to GHCR, and bump chart image tags to trigger the GitOps reconcile loop
+- Documented local workflows with Docker Compose and Kubernetes (e.g., kind) operations including secrets, ingress patterns, and rollout promotion
+
 ### Face Recognition Attendance System
 [GitHub](https://github.com/oatin/Face-Recognition-Attendance) | **Technologies:** Python, Django REST Framework, FastAPI, PostgreSQL, Docker, OpenCV, TensorFlow, Raspberry Pi
 
@@ -83,14 +91,6 @@ permalink: /cv/
 - Developed Solidity smart contracts for secure token minting, transfers, and escrow mechanisms
 - Integrated Web3.py for blockchain interaction and transaction management
 - Containerized the application using Docker for simplified deployment and scalability
-
-### Indonesian Students AI Adoption Analysis
-[GitHub](https://github.com/SkyShineTH/Indonesian-Students-AI-Adoption-Analysis) | **Technologies:** Python, Pandas, Seaborn, Scikit-learn, Statsmodels
-
-- Analyzed survey data of Indonesian university students to understand AI adoption, challenges, and motivations
-- Identified key factors influencing AI usage (Performance Expectancy & Challenges of Use)
-- Applied clustering techniques to segment users into 2 main behavioral groups
-- Performed statistical analysis using Statsmodels for hypothesis testing and regression
 
 ### Call Taxi Website
 **Technologies:** Django, Leaflet.js API, PostgreSQL
