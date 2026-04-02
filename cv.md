@@ -8,7 +8,7 @@ permalink: /cv/
 
 ### Ubon Ratchathani University
 **Bachelor of Science in Data Science and Software Innovation**  
-*2022 - 2026 (Expected)* | **GPAX: 3.29 / 4.00**
+*2022 - 2026 (Expected)* | **GPAX: 3.35 / 4.00**
 
 **Relevant Coursework:** Machine Learning & Deep Learning, Data Warehousing & Cloud Computing, Exploratory Data Analytics, Software Engineering & Web Programming, Image Analytics & Computer Vision
 
