@@ -27,7 +27,7 @@ skills:
 contact:
   email: "fasai.utawan@gmail.com"
   github: "https://github.com/SkyShineTH"
-  linkedin: "https://www.linkedin.com/in/fasai-utawan-894b82386"
+  linkedin: "https://www.linkedin.com/in/fasai-utawan/"
   website: "https://skyshineth.github.io"
   cv: "/cv/"
 ---
