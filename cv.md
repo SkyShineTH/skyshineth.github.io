@@ -49,6 +49,14 @@ permalink: /cv/
 
 ## Projects
 
+### Clinic Demo — Dental Clinic Marketing Site
+[GitHub](https://github.com/SkyShineTH/Clinic-Demo) | [Live](https://clinic-demo.skyshine.online) | **Technologies:** Next.js, React, TypeScript, Tailwind CSS v4, next-intl, GitHub Actions
+
+- Built a full-stack dental clinic marketing site with 10+ pages (home, services, team, gallery, booking, legal) in Thai and English using next-intl i18n (App Router)
+- Implemented an in-memory booking API and a front-desk staff dashboard shell as a mock production app
+- Set up GitHub Actions CI pipeline (lint + build on every push/PR) and optional Vercel deployment workflow with Dependabot for dependency management
+- Deployed to custom domain [clinic-demo.skyshine.online](https://clinic-demo.skyshine.online)
+
 ### FootyBrain - Football Analytics Platform
 [GitHub](https://github.com/SkyShineTH/FootyBrain) | **Technologies:** Python, FastAPI, Next.js, TypeScript, PostgreSQL, Docker, Generative AI
 
