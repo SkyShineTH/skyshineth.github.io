@@ -1,7 +1,7 @@
 ---
 title: "Call Taxi Website"
 category: "Web"
-stack: [Django, Leaflet.js API]
+stack: ["Django", "Leaflet.js API", "PostgreSQL"]
 link: "https://github.com/oatin/Call-Taxi"
 repo_label: "View Repo on GitHub"
 ---

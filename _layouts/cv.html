@@ -7,6 +7,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #4a5568;
+            --text-body: #2d3748;
+            --border-line: #e2e8f0;
+            --highlight-bg: #f7fafc;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #525659;
@@ -18,33 +29,22 @@
 
         .cv-container {
             width: 210mm;
-            min-height: 297mm;
             background-color: white;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            position: relative;
             color: #333;
-            box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2d3748;
-            --accent-color: #4a5568;
-            --text-body: #2d3748;
-            --border-line: #e2e8f0;
-            --highlight-bg: #f7fafc;
-        }
-
+        /* ── Header ── */
         .header-section {
             background-color: var(--primary-color);
             color: white;
-            padding: 35px 40px;
+            padding: 28px 36px;
         }
 
         h1 {
-            font-size: 28pt;
+            font-size: 26pt;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin: 0 0 2px;
             letter-spacing: 1px;
             text-transform: uppercase;
             line-height: 1.2;
@@ -52,25 +52,25 @@
 
         .subtitle {
             color: #e2e8f0;
-            font-size: 11pt;
-            margin-bottom: 15px;
+            font-size: 10.5pt;
+            margin: 0 0 10px;
         }
 
         .contact-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            font-size: 10pt;
-            margin-top: 12px;
+            gap: 14px;
+            font-size: 9.5pt;
+            margin-top: 10px;
             color: #e2e8f0;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
-        
+
         .contact-item a {
             color: white;
             text-decoration: none;
@@ -78,84 +78,81 @@
             transition: border-color 0.2s;
         }
 
-        .contact-item a:hover {
-            border-color: white;
-        }
+        .contact-item a:hover { border-color: white; }
 
+        /* ── Content body ── */
         .content-body {
-            padding: 30px 40px;
+            padding: 20px 36px 28px;
         }
 
         .content-body h2 {
-            font-size: 14pt;
+            font-size: 12.5pt;
             color: var(--primary-color);
             font-weight: 700;
             text-transform: uppercase;
             border-bottom: 2px solid var(--border-line);
-            padding-bottom: 6px;
-            margin-top: 25px;
-            margin-bottom: 15px;
+            padding-bottom: 4px;
+            margin-top: 18px;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
         }
 
-        /* Special styling for Professional Summary */
+        .content-body h2:first-of-type {
+            margin-top: 0;
+        }
+
         .content-body h2:first-of-type + p {
             background-color: var(--highlight-bg);
-            padding: 12px 15px;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 4px;
-            font-size: 10pt;
-            line-height: 1.6;
+            padding: 10px 14px;
+            border-left: 3px solid var(--primary-color);
+            border-radius: 3px;
+            font-size: 9.5pt;
+            line-height: 1.55;
             color: var(--text-body);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .content-body h3 {
             font-weight: 700;
             color: #2d3748;
-            font-size: 11pt;
-            margin-top: 12px;
-            margin-bottom: 4px;
+            font-size: 10.5pt;
+            margin-top: 10px;
+            margin-bottom: 3px;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
         }
 
-        /* Date badges in headers */
         .content-body h3 em {
             font-style: normal;
-            font-size: 9pt;
+            font-size: 8.5pt;
             font-weight: 500;
             color: var(--accent-color);
             background-color: #f7fafc;
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 1px 7px;
+            border-radius: 3px;
             border: 1px solid #edf2f7;
             white-space: nowrap;
         }
 
         .content-body p {
-            font-size: 10pt;
-            line-height: 1.5;
+            font-size: 9.5pt;
+            line-height: 1.45;
             color: var(--text-body);
-            margin-bottom: 8px;
-        }
-
-        .content-body li {
-            font-size: 10pt;
-            line-height: 1.5;
-            color: var(--text-body);
+            margin: 0 0 6px;
         }
 
         .content-body ul {
-            margin-top: 6px;
-            margin-bottom: 14px;
-            padding-left: 18px;
+            margin: 4px 0 10px;
+            padding-left: 16px;
             list-style-type: disc;
         }
 
         .content-body li {
-            margin-bottom: 4px;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: var(--text-body);
+            margin-bottom: 2px;
         }
 
         .content-body strong {
@@ -171,7 +168,7 @@
         .content-body hr {
             border: none;
             border-top: 1px solid var(--border-line);
-            margin: 20px 0;
+            margin: 14px 0;
         }
 
         .content-body a {
@@ -180,22 +177,17 @@
             font-weight: 500;
         }
 
-        .content-body a:hover {
-            text-decoration: underline;
-        }
+        .content-body a:hover { text-decoration: underline; }
 
-        /* Project/Experience item spacing */
-        .content-body h3 + p + ul {
-            margin-top: 6px;
-        }
+        .content-body h3 + p + ul { margin-top: 4px; }
 
-        /* Technology tags styling */
         .content-body h3 + p em {
-            font-size: 9pt;
+            font-size: 8.5pt;
             color: #6b7280;
             font-style: italic;
         }
 
+        /* ── Print button ── */
         .print-button {
             position: fixed;
             top: 24px;
@@ -220,61 +212,96 @@
             transform: scale(1.05);
         }
 
+        /* ── Print / PDF ── */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
         @media print {
-            body {
-                background: none;
+            html, body {
+                width: 210mm;
+                margin: 0;
                 padding: 0;
+                background: none;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
+
             .cv-container {
+                width: 100%;
                 box-shadow: none;
                 margin: 0;
-                width: 100%;
-                min-height: auto;
             }
-            .print-button {
-                display: none !important;
-            }
+
+            .print-button { display: none !important; }
+
             .header-section {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            /* Ensure Professional Summary background prints */
+
             .content-body h2:first-of-type + p {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            a {
-                text-decoration: none;
-                color: inherit;
+
+            .content-body h3 em {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
+
+            a { text-decoration: none; color: inherit; }
+
             .content-body h2 {
+                break-after: avoid;
                 page-break-after: avoid;
-                margin-top: 20px;
             }
+
             .content-body h3 {
+                break-after: avoid;
                 page-break-after: avoid;
             }
-            /* Prevent breaking items */
+
             .content-body ul {
+                break-inside: avoid;
                 page-break-inside: avoid;
             }
+
+            /* Keep a project block (h3 + tech line + bullets) together */
+            .content-body h3,
+            .content-body h3 + p,
+            .content-body h3 + p + ul {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .content-body hr {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* Tighten spacing for print density */
+            .header-section { padding: 24px 32px; }
+            .content-body { padding: 16px 32px 20px; }
+            h1 { font-size: 24pt; }
+            .subtitle { font-size: 10pt; }
+            .contact-row { font-size: 9pt; gap: 12px; }
+            .content-body h2 { margin-top: 14px; margin-bottom: 8px; font-size: 12pt; }
+            .content-body h2:first-of-type { margin-top: 0; }
+            .content-body h3 { margin-top: 8px; font-size: 10pt; }
+            .content-body p, .content-body li { font-size: 9pt; line-height: 1.4; }
+            .content-body ul { margin: 3px 0 8px; }
+            .content-body li { margin-bottom: 1px; }
+            .content-body hr { margin: 10px 0; }
+            .content-body h2:first-of-type + p { font-size: 9pt; padding: 8px 12px; margin-bottom: 10px; }
         }
 
+        /* ── Mobile ── */
         @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-                background-color: white;
-            }
-            .cv-container {
-                width: 100%;
-                box-shadow: none;
-            }
-            .print-button {
-                top: 10px;
-                right: 10px;
-                padding: 10px 16px;
-                font-size: 14px;
-            }
+            body { padding: 10px; background-color: white; }
+            .cv-container { width: 100%; box-shadow: none; }
+            .print-button { top: 10px; right: 10px; padding: 10px 16px; font-size: 14px; }
         }
     </style>
 </head>
@@ -287,8 +314,8 @@
     <div class="cv-container">
         <header class="header-section">
             <h1>Fasai Utawan</h1>
-            <p class="subtitle">Bachelor of Science in Data Science and Software Innovation</p>
-            
+            <p class="subtitle">DevOps Engineer | Data Science & Software Innovation</p>
+
             <div class="contact-row">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
@@ -300,7 +327,7 @@
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/fasai-utawan/" target="_blank">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/fasai-utawan/" target="_blank">in/fasai-utawan</a>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-github"></i>

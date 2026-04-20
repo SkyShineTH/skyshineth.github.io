@@ -1,7 +1,7 @@
 ---
 title: "Face Recognition Attendance System"
 category: "Data & AI"
-stack: ["Python", "OpenCV", "dlib", "MobileNetV2", "Django", "FastAPI", "PostgreSQL"]
+stack: ["Python", "OpenCV", "TensorFlow", "Django", "FastAPI", "PostgreSQL", "Docker", "Raspberry Pi"]
 link: "https://github.com/oatin/Face-Recognition-Attendance"
 ---
 

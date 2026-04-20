@@ -30,6 +30,7 @@ Data Science & Software Innovation graduate with 5 months of hands-on DevOps int
 - Managed cloud infrastructure across AWS and GCP, monitoring resource utilization and maintaining service availability for production workloads
 - Developed 3+ internal tool integrations connecting project management platforms, streamlining cross-team workflows and cutting manual handoff steps
 - Standardized containerization practices across projects using Docker and Docker Compose, improving environment consistency and onboarding speed for new services
+- Contributed to ERP system development using Frappe/ERPNext, building custom modules to support business workflows (details under NDA)
 
 ---
 
@@ -39,7 +40,7 @@ Data Science & Software Innovation graduate with 5 months of hands-on DevOps int
 
 **Machine Learning & AI:** TensorFlow, Keras, OpenCV, Scikit-learn, Deep Learning
 
-**Web & Mobile Development:** React, Next.js, Flutter, Django, FastAPI, REST APIs, HTML/CSS
+**Web & Mobile Development:** React, Next.js, Flutter, Django, FastAPI, Frappe/ERPNext, REST APIs, HTML/CSS
 
 **DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Helm, Argo CD, Argo Rollouts, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
 
