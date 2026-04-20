@@ -12,13 +12,13 @@ about: |
 
 skills:
   - category: "Programming Languages"
-    items: ["Python", "JavaScript", "TypeScript", "Dart", "SQL", "C/C++"]
+    items: ["Python", "Go", "JavaScript", "TypeScript", "Dart", "SQL", "C/C++", "Bash/Shell"]
   - category: "AI/ML & Data Science"
     items: ["TensorFlow", "Keras", "OpenCV", "Scikit-learn", "Deep Learning"]
   - category: "Web & Mobile"
     items: ["React", "Next.js", "Django", "FastAPI", "Flutter", "REST APIs"]
   - category: "DevOps & Cloud"
-    items: ["Docker", "Docker Compose", "Kubernetes", "Lens", "GitLab CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "Nginx", "Linux", "AWS", "GCP"]
+    items: ["Docker", "Docker Compose", "Kubernetes", "Helm", "Argo CD", "Argo Rollouts", "Lens", "GitLab CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "Nginx", "Linux", "AWS", "GCP"]
   - category: "Database & Data"
     items: ["PostgreSQL", "MySQL", "SQLite", "Pandas", "NumPy"]
   - category: "Tools & Visualization"
@@ -28,6 +28,6 @@ contact:
   email: "fasai.utawan@gmail.com"
   github: "https://github.com/SkyShineTH"
   linkedin: "https://www.linkedin.com/in/fasai-utawan/"
-  website: "https://skyshineth.github.io"
+  website: "https://skyshine.online"
   cv: "/cv/"
 ---

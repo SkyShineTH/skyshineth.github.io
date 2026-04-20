@@ -4,6 +4,12 @@ title: "CV - Fasai Utawan"
 permalink: /cv/
 ---
 
+## Professional Summary
+
+Data Science & Software Innovation graduate with 5 months of hands-on DevOps internship experience building CI/CD pipelines, managing Kubernetes clusters on AWS and GCP, and deploying containerized applications. Demonstrated ability to bridge AI/ML development and production infrastructure through 3 end-to-end projects spanning GitOps, computer vision, and data engineering. Seeking roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
+
+---
+
 ## Education
 
 ### Ubon Ratchathani University
@@ -19,23 +25,23 @@ permalink: /cv/
 ### DevOps Engineering Intern — Artery Partner Co., Ltd.
 *Nov 2025 - Mar 2026*
 
-- Developed internal tool integrations to streamline project management workflows and enhance team collaboration
-- Implemented and maintained CI/CD pipelines for automated testing, building, and deployment processes
-- Managed and monitored cloud infrastructure to ensure high availability and performance
-- Administered Kubernetes clusters for monitoring and troubleshooting containerized applications
-- Collaborated on infrastructure automation strategies and containerization best practices to improve deployment efficiency
+- Implemented and maintained 4+ CI/CD pipelines using GitLab CI/CD and GitHub Actions, automating build, test, and deployment stages across multiple services and reducing manual release steps
+- Administered Kubernetes clusters hosting containerized applications; reduced average issue resolution time by diagnosing and troubleshooting failures using Prometheus and Grafana dashboards
+- Managed cloud infrastructure across AWS and GCP, monitoring resource utilization and maintaining service availability for production workloads
+- Developed 3+ internal tool integrations connecting project management platforms, streamlining cross-team workflows and cutting manual handoff steps
+- Standardized containerization practices across projects using Docker and Docker Compose, improving environment consistency and onboarding speed for new services
 
 ---
 
 ## Technical Skills
 
-**Programming Languages:** Python, JavaScript, TypeScript, Dart, SQL, C/C++
+**Programming Languages:** Python, Go, JavaScript, TypeScript, Dart, SQL, C/C++, Bash/Shell
 
 **Machine Learning & AI:** TensorFlow, Keras, OpenCV, Scikit-learn, Deep Learning
 
 **Web & Mobile Development:** React, Next.js, Flutter, Django, FastAPI, REST APIs, HTML/CSS
 
-**DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
+**DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Helm, Argo CD, Argo Rollouts, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
 
 **Cloud Platforms:** AWS (Amazon Web Services), Google Cloud Platform (GCP)
 
@@ -140,7 +146,7 @@ permalink: /cv/
 
 **Languages:** Thai (Native), English (B1 - Good reading & listening, basic speaking)
 
-**Learning Focus:** Currently deepening knowledge in DevOps practices, cloud infrastructure management, and CI/CD automation
+**Learning Focus:** Deepening knowledge in DevOps practices, cloud infrastructure management, MLOps, and CI/CD automation
 
 **Open Source Contributions:** Active GitHub contributor with multiple public repositories showcasing diverse technical skills
 
