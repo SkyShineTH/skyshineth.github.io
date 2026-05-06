@@ -1,14 +1,12 @@
 ---
 layout: portfolio
 title: "Fasai Utawan"
-subtitle: "DevOps Engineer | Data Science & Software Innovation"
+subtitle: "Junior DevOps Engineer | Data Science & Software Innovation"
 
 about: |
-  Data Science & Software Innovation graduate; recently completed a DevOps engineering internship at Artery Partner Co., Ltd.
-  Experienced in building and maintaining CI/CD pipelines, managing cloud infrastructure (AWS, GCP),
-  and orchestrating containerized applications with Docker and Kubernetes.
-  Also skilled in end-to-end ML pipelines, computer vision, and full-stack development,
-  with a passion for bridging the gap between AI development and production operations.
+  Data Science & Software Innovation graduate who recently completed a 4-month DevOps internship at Artery Partner Co., Ltd.
+  Built and maintained CI/CD pipelines, supported cloud operations on AWS/GCP, and deployed containerized services with Docker and Kubernetes.
+  Also developed portfolio projects in GitOps and ML pipelines, with a focus on practical automation and reliable delivery.
 
 skills:
   - category: "Programming Languages"

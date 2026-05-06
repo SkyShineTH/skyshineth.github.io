@@ -6,7 +6,7 @@ permalink: /cv/
 
 ## Professional Summary
 
-Data Science & Software Innovation graduate with 5 months of hands-on DevOps internship experience building CI/CD pipelines, managing Kubernetes clusters on AWS and GCP, and deploying containerized applications. Demonstrated ability to bridge AI/ML development and production infrastructure through 3 end-to-end projects spanning GitOps, computer vision, and data engineering. Seeking roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
+Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
 
 ---
 
@@ -26,8 +26,8 @@ Data Science & Software Innovation graduate with 5 months of hands-on DevOps int
 *Nov 2025 - Mar 2026*
 
 - Implemented and maintained 4+ CI/CD pipelines using GitLab CI/CD and GitHub Actions, automating build, test, and deployment stages across multiple services and reducing manual release steps
-- Administered Kubernetes clusters hosting containerized applications; reduced average issue resolution time by diagnosing and troubleshooting failures using Prometheus and Grafana dashboards
-- Managed cloud infrastructure across AWS and GCP, monitoring resource utilization and maintaining service availability for production workloads
+- Supported Kubernetes cluster operations for containerized applications; reduced average issue resolution time by diagnosing and troubleshooting failures using Prometheus and Grafana dashboards
+- Supported cloud infrastructure tasks across AWS and GCP, monitoring resource utilization and helping maintain service availability for production workloads
 - Developed 3+ internal tool integrations connecting project management platforms, streamlining cross-team workflows and cutting manual handoff steps
 - Standardized containerization practices across projects using Docker and Docker Compose, improving environment consistency and onboarding speed for new services
 - Contributed to ERP system development using Frappe/ERPNext, building custom modules to support business workflows (details under NDA)
@@ -56,13 +56,13 @@ Data Science & Software Innovation graduate with 5 months of hands-on DevOps int
 
 ## Projects
 
-### Clinic Demo — Dental Clinic Marketing Site
-[GitHub](https://github.com/SkyShineTH/Clinic-Demo) | [Live](https://clinic-demo.skyshine.online) | **Technologies:** Next.js, React, TypeScript, Tailwind CSS v4, next-intl, GitHub Actions
+### Clinic Demo — DevOps-Focused Next.js Deployment Project
+[GitHub](https://github.com/SkyShineTH/Clinic-Demo) | [Live](https://clinic-demo.skyshine.online) | **Technologies:** Next.js, React, TypeScript, Tailwind CSS v4, next-intl, Docker, Docker Compose, GitHub Actions
 
-- Built a full-stack dental clinic marketing site with 10+ pages (home, services, team, gallery, booking, legal) in Thai and English using next-intl i18n (App Router)
-- Implemented an in-memory booking API and a front-desk staff dashboard shell as a mock production app
-- Set up GitHub Actions CI pipeline (lint + build on every push/PR) and optional Vercel deployment workflow with Dependabot for dependency management
-- Deployed to custom domain [clinic-demo.skyshine.online](https://clinic-demo.skyshine.online)
+- Repositioned a bilingual Next.js clinic demo as a production-style deployment project covering CI/CD, Docker workflows, environment configuration, and operational readiness
+- Implemented GitHub Actions checks for linting, TypeScript validation, production builds, smoke flow validation, Docker image build, and Compose readiness
+- Added health and readiness endpoints, safe `.env.example` defaults, Dependabot grouping, and structured booking API logs without exposing booking payloads
+- Deployed to custom domain [clinic-demo.skyshine.online](https://clinic-demo.skyshine.online) with documented release and rollback workflow
 
 ### FootyBrain - Football Analytics Platform
 [GitHub](https://github.com/SkyShineTH/FootyBrain) | **Technologies:** Python, FastAPI, Next.js, TypeScript, PostgreSQL, Docker, Generative AI

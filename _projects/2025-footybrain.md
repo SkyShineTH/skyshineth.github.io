@@ -6,5 +6,5 @@ link: "https://github.com/SkyShineTH/FootyBrain"
 repo_label: "View Repo on GitHub"
 ---
 
-Developed a comprehensive Data Warehouse system for football analytics with AI-powered match prediction and automated reporting dashboards.
-**Outcome:** Built end-to-end ETL pipelines, real-time analytics, and Generative AI for natural language report generation using Docker Compose orchestration.
+Built a football analytics platform with a data warehouse workflow, match prediction models, and reporting dashboards.
+**Outcome:** Implemented ETL pipelines, analytics views, and Generative AI report generation with Docker Compose orchestration.
