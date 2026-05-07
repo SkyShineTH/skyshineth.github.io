@@ -6,7 +6,7 @@ subtitle: "Junior DevOps Engineer | Data Science & Software Innovation"
 about: |
   Data Science & Software Innovation graduate who recently completed a 4-month DevOps internship at Artery Partner Co., Ltd.
   Built and maintained CI/CD pipelines, supported cloud operations on AWS/GCP, and deployed containerized services with Docker and Kubernetes.
-  Also developed portfolio projects in GitOps and ML pipelines, with a focus on practical automation and reliable delivery.
+  Also developed portfolio projects in GitOps, AI inference, and ML pipelines, with a focus on practical automation and reliable delivery.
 
 skills:
   - category: "Programming Languages"

@@ -6,7 +6,7 @@ permalink: /cv/
 
 ## Professional Summary
 
-Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
+Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across GitOps, AI inference, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
 
 ---
 
@@ -55,6 +55,14 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 ---
 
 ## Projects
+
+### FaceRatioOps — Privacy-First AI Inference API
+[GitHub](https://github.com/SkyShineTH/FaceRatioOps) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, Docker, Docker Compose, GitHub Actions, pytest, ruff
+
+- Built a FastAPI inference service that analyzes MediaPipe face landmarks from bounded image uploads and returns geometric ratios with explainability overlay data
+- Processed uploaded images in memory only, avoided image payload logging, and documented safety boundaries against recognition, identity matching, attractiveness scoring, and sensitive attribute inference
+- Added health, model-info, compatibility, and Prometheus-style metrics endpoints for operational visibility
+- Containerized the API with Docker and Docker Compose and added GitHub Actions checks for linting, tests, and Docker image build validation
 
 ### Clinic Demo — DevOps-Focused Next.js Deployment Project
 [GitHub](https://github.com/SkyShineTH/Clinic-Demo) | [Live](https://clinic-demo.skyshine.online) | **Technologies:** Next.js, React, TypeScript, Tailwind CSS v4, next-intl, Docker, Docker Compose, GitHub Actions
