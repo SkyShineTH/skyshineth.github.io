@@ -126,6 +126,11 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 ## Certifications & Achievements
 
+### Architecture 1001: x86-64 Assembly — OpenSecurityTraining2
+*Issued June 2025* | [Verify Credential](https://p.ost2.fyi/certificates/e13de2675d4f4a528df1f67b788c794d)
+
+- Completed a 28.5-hour x86-64 assembly course covering low-level computing foundations for computer architecture, reverse engineering, operating systems, and system security
+
 ### 3rd Place Winner, UBU Data Analytics Hackathon
 *November 2024*
 

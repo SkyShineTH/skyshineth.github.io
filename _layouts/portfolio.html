@@ -273,6 +273,49 @@
     }
 
     /* ================================ */
+    /*  CERTIFICATIONS                  */
+    /* ================================ */
+    .certifications-section {
+      padding: 44px 0;
+    }
+    .certification-list {
+      display: grid;
+      gap: 16px;
+    }
+    .certification-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .certification-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .certification-meta {
+      color: var(--text-sec);
+      font-size: 0.86rem;
+      margin-bottom: 10px;
+    }
+    .certification-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 500;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+    }
+    .certification-link:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    /* ================================ */
     /*  CONTACT                         */
     /* ================================ */
     .contact-section {
@@ -418,9 +461,34 @@
       </div>
     </section>
 
+    {% if page.certifications %}
+    <!-- CERTIFICATIONS -->
+    <section class="section certifications-section" id="certifications">
+      <h2 class="section-title"><span class="title-num">04.</span> Certifications</h2>
+      <div class="certification-list">
+        {% for cert in page.certifications %}
+        <article class="certification-item">
+          <h3 class="certification-title">{{ cert.name }}</h3>
+          <p class="certification-meta">{{ cert.issuer }} &middot; Issued {{ cert.issued }}</p>
+          {% if cert.skills %}
+          <div class="skill-tags">
+            {% for skill in cert.skills %}<span class="skill-tag">{{ skill }}</span>{% endfor %}
+          </div>
+          {% endif %}
+          {% if cert.url %}
+          <a href="{{ cert.url }}" class="certification-link" target="_blank" rel="noopener">
+            <i class="fas fa-certificate"></i> Verify Credential
+          </a>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
     <!-- CONTACT -->
     <section class="section contact-section" id="contact">
-      <h2 class="section-title"><span class="title-num">04.</span> Get in Touch</h2>
+      <h2 class="section-title"><span class="title-num">{% if page.certifications %}05{% else %}04{% endif %}.</span> Get in Touch</h2>
       <p class="contact-text">Feel free to reach out for collaboration or opportunities.</p>
       <div class="contact-links">
         {% if page.contact.email %}
