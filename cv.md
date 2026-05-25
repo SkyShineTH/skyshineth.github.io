@@ -6,7 +6,7 @@ permalink: /cv/
 
 ## Professional Summary
 
-Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across GitOps, AI inference, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, or Data Engineering where automation and reliability matter.
+Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across AI agent infrastructure, privacy-first AI inference, GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, AI infrastructure, or Data Engineering where automation and reliability matter.
 
 ---
 
@@ -38,9 +38,9 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 **Programming Languages:** Python, Go, JavaScript, TypeScript, Dart, SQL, C/C++, Bash/Shell
 
-**Machine Learning & AI:** TensorFlow, Keras, OpenCV, Scikit-learn, Deep Learning
+**Machine Learning, AI & Agents:** TensorFlow, Keras, OpenCV, Scikit-learn, Deep Learning, AI Agent Tooling
 
-**Web & Mobile Development:** React, Next.js, Flutter, Django, FastAPI, Frappe/ERPNext, REST APIs, HTML/CSS
+**Web & API Development:** React, Next.js, Flutter, Django, FastAPI, Pydantic, Frappe/ERPNext, REST APIs, HTML/CSS
 
 **DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Helm, Argo CD, Argo Rollouts, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
 
@@ -55,6 +55,13 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 ---
 
 ## Projects
+
+### AgentGate — Permission Gateway for AI Agents
+[GitHub](https://github.com/SkyShineTH/AgentGate) | **Technologies:** Python, Pydantic, Typer, SQLite, pytest, ruff, CLI, Policy Engine, Audit Logs
+
+- Built a provider-agnostic permission gateway that normalizes proposed AI-agent tool calls into structured requests before policy evaluation and execution
+- Implemented deterministic allow, deny, and require-approval policy decisions for file-oriented and shell-style actions with public/private workspace boundaries and path traversal protection
+- Added a SQLite approval queue, approval edit history, JSONL or SQLite audit logs, CLI inspection commands, and regression tests for safer agent automation workflows
 
 ### FaceRatioOps — Privacy-First AI Inference API
 [GitHub](https://github.com/SkyShineTH/FaceRatioOps) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, Docker, Docker Compose, GitHub Actions, pytest, ruff

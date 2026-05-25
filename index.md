@@ -1,20 +1,20 @@
 ---
 layout: portfolio
 title: "Fasai Utawan"
-subtitle: "Junior DevOps Engineer | Data Science & Software Innovation"
+subtitle: "Junior DevOps Engineer | AI Infrastructure | Data Science & Software Innovation"
 
 about: |
   Data Science & Software Innovation graduate who recently completed a 4-month DevOps internship at Artery Partner Co., Ltd.
   Built and maintained CI/CD pipelines, supported cloud operations on AWS/GCP, and deployed containerized services with Docker and Kubernetes.
-  Also developed portfolio projects in GitOps, AI inference, and ML pipelines, with a focus on practical automation and reliable delivery.
+  Also developed portfolio projects in AI agent infrastructure, privacy-first AI inference, GitOps, and ML/data pipelines, with a focus on practical automation, safety boundaries, and reliable delivery.
 
 skills:
   - category: "Programming Languages"
     items: ["Python", "Go", "JavaScript", "TypeScript", "Dart", "SQL", "C/C++", "Bash/Shell"]
-  - category: "AI/ML & Data Science"
-    items: ["TensorFlow", "Keras", "OpenCV", "Scikit-learn", "Deep Learning"]
+  - category: "AI/ML & Agent Systems"
+    items: ["TensorFlow", "Keras", "OpenCV", "Scikit-learn", "Deep Learning", "AI Agent Tooling"]
   - category: "Web & Mobile"
-    items: ["React", "Next.js", "Django", "FastAPI", "Frappe/ERPNext", "Flutter", "REST APIs"]
+    items: ["React", "Next.js", "Django", "FastAPI", "Pydantic", "Frappe/ERPNext", "Flutter", "REST APIs"]
   - category: "DevOps & Cloud"
     items: ["Docker", "Docker Compose", "Kubernetes", "Helm", "Argo CD", "Argo Rollouts", "Lens", "GitLab CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "Nginx", "Linux", "AWS", "GCP"]
   - category: "Database & Data"
