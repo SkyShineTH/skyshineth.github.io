@@ -1,10 +1,13 @@
 ---
 title: "Shipyard — GitOps Platform"
 category: "DevOps"
-stack: ["React", "Vite", "Go", "Gin", "GORM", "PostgreSQL", "Docker", "Kubernetes", "Helm", "Argo CD", "Argo Rollouts", "GitHub Actions", "GHCR"]
+stack: ["React", "Go", "PostgreSQL", "Docker", "DOKS", "Helm", "Argo CD", "Argo Rollouts", "GitHub Actions", "GHCR"]
 link: "https://github.com/SkyShineTH/Shipyard"
 repo_label: "View Repo on GitHub"
+demo_link: "https://shipyard.skyshine.online"
+image: "/assets/images/projects/shipyard-live-demo.png"
 ---
 
-Full-stack **GitOps** portfolio: **React + Vite** frontend, **Go** microservices with **PostgreSQL**, deployed on **Kubernetes** using **Helm** and **Argo CD**. **GitHub Actions** build images, push to **GHCR**, and bump chart tags to close the GitOps loop.  
-**Outcome:** Demonstrated progressive delivery using **Argo Rollouts** canary steps on the todo API (manual promotion flow).
+Full-stack **GitOps** platform deployed as an on-demand portfolio demo on **DigitalOcean Kubernetes**. The app combines a React/Vite frontend, Go auth, todo, and platform-status microservices, PostgreSQL, Helm charts, Argo CD Applications, and GHCR-backed GitHub Actions image delivery.
+
+**Outcome:** Provisioned a cost-conscious 1-node DOKS environment, exposed the app through a DigitalOcean Load Balancer with Cloudflare strict SSL, tuned resource requests to fit a small demo node, demonstrated manual canary promotion with **Argo Rollouts** on the todo API, and added a public case-study page backed by a live platform-status API with scoped Kubernetes RBAC.

@@ -153,6 +153,16 @@
       color: var(--text);
       margin-bottom: 10px;
     }
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      background: #f3f4f6;
+    }
     .stack-badge {
       display: inline-block;
       padding: 2px 9px;
@@ -180,6 +190,12 @@
     .project-link:hover {
       opacity: 0.7;
       text-decoration: none;
+    }
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
     }
 
     /* ================================ */
@@ -430,15 +446,25 @@
         {% for project in site.projects reversed %}
         <article class="project-card" data-category="{{ project.category | slugify }}">
           <h3 class="project-name">{{ project.title }}</h3>
+          {% if project.image %}
+          <img class="project-image" src="{{ project.image }}" alt="{{ project.title }} screenshot" loading="lazy">
+          {% endif %}
           <div class="project-stack">
             {% for s in project.stack %}<span class="stack-badge">{{ s }}</span>{% endfor %}
           </div>
           <div class="project-desc">{{ project.content | strip_html | truncatewords: 50 }}</div>
+          <div class="project-actions">
+          {% if project.demo_link %}
+          <a href="{{ project.demo_link }}" class="project-link" target="_blank" rel="noopener">
+            <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+          {% endif %}
           {% if project.link and project.link != "" %}
           <a href="{{ project.link }}" class="project-link" target="_blank" rel="noopener">
             <i class="fab fa-github"></i> {{ project.repo_label | default: "View Repo" }}
           </a>
           {% endif %}
+          </div>
         </article>
         {% endfor %}
       </div>

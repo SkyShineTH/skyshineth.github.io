@@ -64,12 +64,12 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 - Added a SQLite approval queue, approval edit history, JSONL or SQLite audit logs, CLI inspection commands, and regression tests for safer agent automation workflows
 
 ### FaceRatioOps — Privacy-First AI Inference API
-[GitHub](https://github.com/SkyShineTH/FaceRatioOps) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, Docker, Docker Compose, GitHub Actions, pytest, ruff
+[Live](https://faceratioops.skyshine.online) | [GitHub](https://github.com/SkyShineTH/FaceRatioOps) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, Caddy, Docker, Docker Compose, Prometheus, Grafana, GitHub Actions, pytest, ruff
 
 - Built a FastAPI inference service that analyzes MediaPipe face landmarks from bounded image uploads and returns geometric ratios with explainability overlay data
 - Processed uploaded images in memory only, avoided image payload logging, and documented safety boundaries against recognition, identity matching, attractiveness scoring, and sensitive attribute inference
 - Added health, model-info, compatibility, and Prometheus-style metrics endpoints for operational visibility
-- Containerized the API with Docker and Docker Compose and added GitHub Actions checks for linting, tests, and Docker image build validation
+- Containerized the API with Docker and Docker Compose, added GitHub Actions checks for linting, tests, and Docker image build validation, and deployed to production on a DigitalOcean Droplet with Caddy reverse proxy, Cloudflare DNS, and a Prometheus + Grafana monitoring stack
 
 ### Clinic Demo — DevOps-Focused Next.js Deployment Project
 [GitHub](https://github.com/SkyShineTH/Clinic-Demo) | [Live](https://clinic-demo.skyshine.online) | **Technologies:** Next.js, React, TypeScript, Tailwind CSS v4, next-intl, Docker, Docker Compose, GitHub Actions
@@ -90,12 +90,13 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 - Utilized Docker Compose for orchestrating multi-container application deployment
 
 ### Shipyard — GitOps Platform
-[GitHub](https://github.com/SkyShineTH/Shipyard) | **Technologies:** React, Vite, Go, Gin, GORM, PostgreSQL, Docker, Kubernetes, Helm, Argo CD, Argo Rollouts, GitHub Actions, GHCR
+[Live Demo](https://shipyard.skyshine.online) | [GitHub](https://github.com/SkyShineTH/Shipyard) | **Technologies:** React, Go, PostgreSQL, Docker, DOKS, Helm, Argo CD, Argo Rollouts, GitHub Actions, GHCR
 
-- Built a full-stack GitOps portfolio platform with a React (Vite) frontend and Go microservices (JWT auth, REST APIs) backed by PostgreSQL
-- Packaged services with Helm charts and synced deployments through Argo CD; used Argo Rollouts for canary-style progressive delivery on the todo service
-- Implemented CI with GitHub Actions per service: build Docker images, push to GHCR, and bump chart image tags to trigger the GitOps reconcile loop
-- Documented local workflows with Docker Compose and Kubernetes (e.g., kind) operations including secrets, ingress patterns, and rollout promotion
+- Built a full-stack GitOps portfolio platform with a React (Vite) frontend and Go microservices (JWT auth, todo CRUD, platform-status snapshot API) backed by PostgreSQL
+- Deployed an on-demand DigitalOcean Kubernetes demo with Argo CD Applications, a DigitalOcean Load Balancer, Cloudflare strict SSL, and PostgreSQL on Block Storage
+- Tuned resource requests and replica counts to keep the live demo running on a small 1-node cluster while preserving the GitOps workflow
+- Packaged services with Helm charts and used Argo Rollouts for canary-style progressive delivery on the todo service
+- Implemented 4 path-filtered GitHub Actions CI workflows per service; added a public case-study page backed by the platform-status API with scoped Kubernetes RBAC
 
 ### Face Recognition Attendance System
 [GitHub](https://github.com/oatin/Face-Recognition-Attendance) | **Technologies:** Python, Django REST Framework, FastAPI, PostgreSQL, Docker, OpenCV, TensorFlow, Raspberry Pi
