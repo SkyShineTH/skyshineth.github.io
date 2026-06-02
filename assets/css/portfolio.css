@@ -85,6 +85,11 @@ html.theme-switching *::after {
 
 /* hide native cursor only when the custom trail is live */
 body.cursor-on, body.cursor-on a, body.cursor-on button { cursor: none; }
+/* ...but when Motion is off the custom dots are hidden, so bring the real
+   cursor back instead of leaving the user with no pointer at all */
+body.motion-off.cursor-on,
+body.motion-off.cursor-on a,
+body.motion-off.cursor-on button { cursor: auto; }
 
 a { color: inherit; text-decoration: none; }
 
@@ -97,14 +102,16 @@ a { color: inherit; text-decoration: none; }
   z-index: 0;
   display: block;
 }
-/* fallback gradient when WebGL is off */
+/* fallback gradient when WebGL is off — theme-aware so Light mode (e.g. with
+   Motion off, which shows this layer) stays light instead of going dark */
 .bg-fallback {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
     radial-gradient(60% 50% at 18% 12%, rgba(99,102,241,0.18), transparent 60%),
     radial-gradient(55% 45% at 85% 80%, rgba(129,140,248,0.14), transparent 60%),
-    linear-gradient(180deg, #070a12, #0a0e1a 60%, #070a12);
+    linear-gradient(180deg, var(--bg), var(--bg-2) 60%, var(--bg));
   display: none;
+  transition: background .5s ease;
 }
 .no-webgl .bg-fallback { display: block; }
 .no-webgl #scene { display: none; }
@@ -438,6 +445,18 @@ h1, h2, h3 { font-family: var(--mono); font-weight: 600; line-height: 1.04; marg
 .proj-desc p { margin: 0 0 10px; }
 .proj-desc p:last-child { margin-bottom: 0; }
 .proj-desc strong { color: var(--ink); font-weight: 600; }
+/* A long excerpt would grow the (vertically-centred) panel taller than the
+   viewport and clip its top off-screen inside the overflow-hidden track.
+   Cap the copy so every panel stays readable; full text lives in the CV. */
+.proj-desc {
+  max-height: 38vh; overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent);
+          mask-image: linear-gradient(180deg, #000 82%, transparent);
+}
+.proj-desc p {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7;
+  overflow: hidden;
+}
 /* certification "verify" link */
 .cert .c-link {
   display: inline-block; margin-top: 8px;
