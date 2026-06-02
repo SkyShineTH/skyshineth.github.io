@@ -30,6 +30,23 @@ certifications:
     url: "https://p.ost2.fyi/certificates/e13de2675d4f4a528df1f67b788c794d"
     skills: ["Assembly", "x86-64", "Computer Architecture", "Low-Level Programming", "System Security"]
 
+achievements:
+  - name: "3rd Place — UBU Data Analytics Hackathon"
+    badge: "3rd"
+    issuer: "Ubon Ratchathani University · 12 teams, 60 participants"
+    issued: "Nov 2024"
+    detail: "Network-usage big-data analysis with Power BI & Looker."
+  - name: "UBU Startup Academy"
+    badge: "STA"
+    issuer: "Ubon Ratchathani University"
+    issued: "Dec 2023"
+    detail: "Idea validation, team management, and investor-pitch fundamentals."
+  - name: "IoT Smart Natural Rubber Hackathon"
+    badge: "IOT"
+    issuer: "Architecture & stack design"
+    issued: "2024"
+    detail: "Scalable IoT monitoring solution with cross-functional collaboration."
+
 contact:
   email: "fasai.utawan@gmail.com"
   github: "https://github.com/SkyShineTH"

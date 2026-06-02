@@ -5,8 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ page.title | default: "Curriculum Vitae" }}</title>
 <meta name="theme-color" content="#070a12">
+<meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- favicons -->
+<link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="SkyShine — Fasai Utawan">
+<meta property="og:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Fasai Utawan">
+<meta property="og:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fasai Utawan — Junior DevOps Engineer · AI Infrastructure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Fasai Utawan">
+<meta name="twitter:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
+<meta name="twitter:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
 <script>
-(function(){try{var m=localStorage.getItem("skyshine-theme")||"dark";var eff=m;if(m==="auto"){eff=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark";}if(eff!=="light")eff="dark";document.documentElement.setAttribute("data-theme",eff);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
+(function(){try{var m=localStorage.getItem("skyshine-theme")||"dark";var eff=m;if(m==="auto"){eff=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark";}if(eff!=="light")eff="dark";document.documentElement.setAttribute("data-theme",eff);var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",eff==="light"?"#eceef6":"#070a12");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

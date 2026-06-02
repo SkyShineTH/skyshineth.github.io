@@ -10,6 +10,7 @@ link: "https://github.com/SkyShineTH/FaceRatioOps"
 repo_label: "View Repo on GitHub"
 demo_link: "https://faceratioops.skyshine.online"
 demo_label: "View Live Demo"
+image: "/assets/images/projects/faceratioops-live-demo.png"
 ---
 
 Privacy-first **FastAPI** inference service for facial geometry analysis using **MediaPipe** face landmarks, paired with a **React + TypeScript** workbench that runs in the browser. The API accepts bounded image uploads, processes image bytes in memory, returns geometric ratios with explainability overlay data, and exposes health, model-info, and Prometheus-style metrics endpoints. The **Vite**-built workbench and an interactive architecture diagram are served by FastAPI as a single container.  

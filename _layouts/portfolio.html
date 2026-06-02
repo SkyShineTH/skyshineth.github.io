@@ -6,6 +6,28 @@
 <title>{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure</title>
 <meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta name="theme-color" content="#070a12">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- favicons -->
+<link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SkyShine — Fasai Utawan">
+<meta property="og:title" content="{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure">
+<meta property="og:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fasai Utawan — Junior DevOps Engineer · AI Infrastructure portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure">
+<meta name="twitter:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
+<meta name="twitter:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
 <script>
 /* FOUC-free theme: resolve + apply before first paint */
 (function () {
@@ -17,6 +39,8 @@
     }
     if (eff !== "light") eff = "dark";
     document.documentElement.setAttribute("data-theme", eff);
+    var mc = document.querySelector('meta[name="theme-color"]');
+    if (mc) mc.setAttribute("content", eff === "light" ? "#eceef6" : "#070a12");
   } catch (e) {
     document.documentElement.setAttribute("data-theme", "dark");
   }
@@ -301,6 +325,22 @@
             <div class="c-name">{{ cert.name }}</div>
             <div class="c-meta">{{ cert.issuer }}{% if cert.issued %} · {{ cert.issued }}{% endif %}</div>
             {% if cert.url %}<a class="c-link" href="{{ cert.url }}" target="_blank" rel="noopener" data-hover>Verify credential &rarr;</a>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if page.achievements and page.achievements.size > 0 %}
+      <h3 class="reveal" style="font-size:16px; letter-spacing:.04em; margin:54px 0 0; color:var(--ink-2);">Achievements &amp; Awards</h3>
+      <div class="cert-list">
+        {% for a in page.achievements %}
+        <div class="cert reveal">
+          <div class="badge">{{ a.badge | default: a.issuer | truncate: 3, "" | upcase }}</div>
+          <div>
+            <div class="c-name">{{ a.name }}</div>
+            <div class="c-meta">{{ a.issuer }}{% if a.issued %} · {{ a.issued }}{% endif %}</div>
+            {% if a.detail %}<div class="c-meta" style="margin-top:4px;">{{ a.detail }}</div>{% endif %}
           </div>
         </div>
         {% endfor %}

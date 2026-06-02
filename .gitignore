@@ -9,3 +9,8 @@ Gemfile.lock
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Node / Playwright (OG screenshot tooling only — not part of the site build)
+node_modules/
+package-lock.json
+.playwright/
