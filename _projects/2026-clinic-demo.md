@@ -1,5 +1,9 @@
 ---
 title: "Clinic Demo — DevOps-Focused Next.js Deployment Project"
+short_title: "Clinic Demo"
+featured: true
+featured_order: 4
+featured_label: "Full-Stack + DevOps"
 category: "DevOps"
 stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl", "Docker", "Docker Compose", "GitHub Actions"]
 link: "https://github.com/SkyShineTH/Clinic-Demo"

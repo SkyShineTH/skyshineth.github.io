@@ -1,5 +1,9 @@
 ---
 title: "FaceRatioOps — Privacy-First AI Inference API"
+short_title: "FaceRatioOps"
+featured: true
+featured_order: 2
+featured_label: "AI Inference"
 category: "MLOps"
 stack: ["Python", "FastAPI", "MediaPipe", "Pillow", "NumPy", "Pydantic", "React", "Vite", "TypeScript", "Docker", "Docker Compose", "Caddy", "GHCR", "Prometheus", "Grafana", "Node Exporter", "GitHub Actions", "CodeQL", "Trivy", "k6", "pytest", "ruff"]
 link: "https://github.com/SkyShineTH/FaceRatioOps"

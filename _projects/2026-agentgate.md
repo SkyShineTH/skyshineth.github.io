@@ -1,5 +1,9 @@
 ---
 title: "AgentGate — Permission Gateway for AI Agents"
+short_title: "AgentGate"
+featured: true
+featured_order: 3
+featured_label: "Platform"
 category: "AI Infrastructure"
 stack: ["Python", "Pydantic", "Typer", "SQLite", "pytest", "ruff", "CLI", "Policy Engine", "Audit Logs"]
 link: "https://github.com/SkyShineTH/AgentGate"

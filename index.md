@@ -24,6 +24,7 @@ skills:
 
 certifications:
   - name: "Architecture 1001: x86-64 Assembly"
+    badge: "ASM"
     issuer: "OpenSecurityTraining2"
     issued: "June 2025"
     url: "https://p.ost2.fyi/certificates/e13de2675d4f4a528df1f67b788c794d"

@@ -1,5 +1,9 @@
 ---
 title: "Shipyard — GitOps Platform"
+short_title: "Shipyard"
+featured: true
+featured_order: 1
+featured_label: "GitOps"
 category: "DevOps"
 stack: ["React", "Go", "PostgreSQL", "Docker", "DOKS", "Helm", "Argo CD", "Argo Rollouts", "GitHub Actions", "GHCR"]
 link: "https://github.com/SkyShineTH/Shipyard"
