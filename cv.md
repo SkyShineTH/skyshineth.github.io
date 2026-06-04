@@ -135,6 +135,16 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 ## Certifications & Achievements
 
+### AWS Academy Graduate — AWS Data Engineering — Amazon Web Services
+*Issued October 2025* | [Verify Credential](https://www.credly.com/badges/1178b4a3-611b-49ac-a78f-b6a9d9374283)
+
+- Completed AWS Academy Data Engineering course covering data pipelines, AWS data engineering services, and securing data on AWS
+
+### AWS Academy Graduate — AWS Cloud Foundations — Amazon Web Services
+*Issued July 2025* | [Verify Credential](https://www.credly.com/badges/dc13967f-2aab-43a8-ac04-c046d6400546)
+
+- Completed AWS Academy Cloud Foundations course covering AWS architecture, core services, pricing models, and support plans
+
 ### Architecture 1001: x86-64 Assembly — OpenSecurityTraining2
 *Issued June 2025* | [Verify Credential](https://p.ost2.fyi/certificates/e13de2675d4f4a528df1f67b788c794d)
 
