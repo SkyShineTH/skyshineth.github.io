@@ -27,13 +27,13 @@ certifications:
     badge: "DEA"
     issuer: "Amazon Web Services Training and Certification"
     issued: "Oct 2025"
-    url: "https://www.credly.com/badges/1178b4a3-611b-49ac-a78f-b6a9d9374283"
+    url: "https://www.credly.com/badges/1178b4a3-611b-49ac-a78f-b6a9d9374283/public_url"
     skills: ["AWS", "AWS Cloud", "AWS Data Engineering", "Data Engineering", "Data Pipelines", "Securing Data"]
   - name: "AWS Academy Graduate — AWS Cloud Foundations"
     badge: "CLF"
     issuer: "Amazon Web Services Training and Certification"
     issued: "Jul 2025"
-    url: "https://www.credly.com/badges/dc13967f-2aab-43a8-ac04-c046d6400546"
+    url: "https://www.credly.com/badges/dc13967f-2aab-43a8-ac04-c046d6400546/public_url"
     skills: ["AWS Architecture", "AWS Cloud", "AWS Core Services", "AWS Pricing", "AWS Support"]
   - name: "Architecture 1001: x86-64 Assembly"
     badge: "ASM"
