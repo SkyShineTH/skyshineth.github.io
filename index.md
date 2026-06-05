@@ -5,7 +5,7 @@ subtitle: "Junior DevOps Engineer | AI Infrastructure | Data Science & Software 
 
 about: |
   Data Science & Software Innovation graduate who recently completed a 4-month DevOps internship at Artery Partner Co., Ltd.
-  Built and maintained CI/CD pipelines, supported cloud operations on AWS/GCP, and deployed containerized services with Docker and Kubernetes.
+  Built Google Workspace integrations for Frappe/ERPNext, configured GCP IAM service accounts, automated internal workflows with GitLab CI/CD, and set up Grafana dashboards for observability.
   Also developed portfolio projects in AI agent infrastructure, privacy-first AI inference, GitOps, and ML/data pipelines, with a focus on practical automation, safety boundaries, and reliable delivery.
 
 skills:
