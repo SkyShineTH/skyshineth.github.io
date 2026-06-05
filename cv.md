@@ -6,7 +6,7 @@ permalink: /cv/
 
 ## Professional Summary
 
-Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, supporting Kubernetes workloads on AWS/GCP environments, and deploying containerized applications. Built practical portfolio projects across AI agent infrastructure, privacy-first AI inference, GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking junior roles in DevOps, MLOps, AI infrastructure, or Data Engineering where automation and reliability matter.
+Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, working with Kubernetes clusters on GCP, and integrating cloud services with internal tools. Built practical portfolio projects across AI agent infrastructure, privacy-first AI inference, GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking roles in DevOps, MLOps, AI infrastructure, or Data Engineering where automation and reliability matter.
 
 ---
 
@@ -25,12 +25,11 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 ### DevOps Engineering Intern — Artery Partner Co., Ltd.
 *Nov 2025 - Mar 2026*
 
-- Implemented and maintained 4+ CI/CD pipelines using GitLab CI/CD and GitHub Actions, automating build, test, and deployment stages across multiple services and reducing manual release steps
-- Supported Kubernetes cluster operations for containerized applications; reduced average issue resolution time by diagnosing and troubleshooting failures using Prometheus and Grafana dashboards
-- Supported cloud infrastructure tasks across AWS and GCP, monitoring resource utilization and helping maintain service availability for production workloads
-- Developed 3+ internal tool integrations connecting project management platforms, streamlining cross-team workflows and cutting manual handoff steps
-- Standardized containerization practices across projects using Docker and Docker Compose, improving environment consistency and onboarding speed for new services
-- Contributed to ERP system development using Frappe/ERPNext, building custom modules to support business workflows (details under NDA)
+- Developed Google Tasks, Calendar, and Drive integrations for Frappe/ERPNext to automate workflow processes; wrote Cypress end-to-end tests covering both features
+- Configured GCP IAM service accounts and enabled Google Workspace APIs (Tasks, Calendar, Drive) to connect ERP services with Google
+- Built a scheduled GitLab CI/CD pipeline using Shell script to automate an internal scanning and reporting workflow
+- Created Grafana dashboards and explored Prometheus instrumentation for service monitoring and observability
+- Worked with Kubernetes, Helm, and OpenLens to connect to and observe live cluster environments under mentor guidance
 
 ---
 
