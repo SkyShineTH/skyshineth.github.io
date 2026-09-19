@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title | default: "Curriculum Vitae" }}</title>
-<meta name="theme-color" content="#070a12">
+<title>{{ page.title | default: "Curriculum Vitae" }} — Junior System Engineer · AWS / DevOps · Software Development</title>
+<meta name="theme-color" content="#171d24">
 <meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 
@@ -17,34 +17,34 @@
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="SkyShine — Fasai Utawan">
-<meta property="og:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Fasai Utawan">
+<meta property="og:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Junior System Engineer · AWS / DevOps · Software Development">
 <meta property="og:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fasai Utawan — Junior DevOps Engineer · AI Infrastructure">
+<meta property="og:image:alt" content="Fasai Utawan — Junior System Engineer · AWS / DevOps · Software Development">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Fasai Utawan">
+<meta name="twitter:title" content="{{ page.title | default: 'Curriculum Vitae' }} — Junior System Engineer · AWS / DevOps · Software Development">
 <meta name="twitter:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
 <meta name="twitter:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
 <script>
-(function(){try{var m=localStorage.getItem("skyshine-theme")||"dark";var eff=m;if(m==="auto"){eff=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark";}if(eff!=="light")eff="dark";document.documentElement.setAttribute("data-theme",eff);var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",eff==="light"?"#eceef6":"#070a12");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
+(function(){try{var m=localStorage.getItem("skyshine-theme")||"dark";var eff=m;if(m==="auto"){eff=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark";}if(eff!=="light")eff="dark";document.documentElement.setAttribute("data-theme",eff);var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",eff==="light"?"#f1eee8":"#171d24");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#070a12; --ink:#eef1f8; --ink-2:#aeb6cc; --ink-3:#6b7390;
-    --accent:#6366f1; --accent-3:#a5b0ff; --bd:rgba(120,134,200,.16);
+    --bg:#171d24; --ink:#f4f2ed; --ink-2:#c3c8cc; --ink-3:#96a0a8;
+    --accent:#58a6f5; --accent-3:#a9d2ff; --bd:#3a414b;
     --btn-bg:transparent;
-    --mono:"IBM Plex Mono",ui-monospace,monospace; --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace; --sans:"DM Sans",sans-serif; --display:"Space Grotesk",sans-serif;
   }
   :root[data-theme="light"]{
-    --bg:#eceef6; --ink:#161a2b; --ink-2:#474e68; --ink-3:#7c849e;
-    --accent:#4f46e5; --accent-3:#4338ca; --bd:rgba(60,70,130,.18);
-    --btn-bg:rgba(255,255,255,.6);
+    --bg:#f1eee8; --ink:#202730; --ink-2:#4c555d; --ink-3:#637079;
+    --accent:#1765b1; --accent-3:#17518c; --bd:#c8c2b7;
+    --btn-bg:#e9e5dd;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
@@ -59,16 +59,16 @@
   .topbar .home{font-family:var(--mono);font-size:13px;color:var(--ink-2);display:flex;gap:9px;align-items:center;}
   .topbar .home:hover{text-decoration:none;color:var(--ink);}
   .topbar .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
-  .btn{font-family:var(--mono);font-size:12.5px;padding:9px 15px;border-radius:999px;
+  .btn{font-family:var(--mono);font-size:12.5px;padding:9px 15px;border-radius:3px;
     border:1px solid var(--bd);color:var(--ink);background:transparent;cursor:pointer;
     transition:border-color .2s,background .2s;}
   .btn:hover{border-color:var(--accent);}
-  .btn-p{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+  .btn-p{background:var(--accent);border-color:var(--accent);color:#191d23;font-weight:600;}
   .tools{display:flex;align-items:center;gap:12px;}
-  .theme-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;
+  .theme-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:3px;
     border:1px solid var(--bd);background:var(--btn-bg);}
   .theme-seg{appearance:none;-webkit-appearance:none;border:0;cursor:pointer;width:32px;height:28px;
-    border-radius:999px;display:grid;place-items:center;padding:0;background:transparent;color:var(--ink-3);
+    border-radius:2px;display:grid;place-items:center;padding:0;background:transparent;color:var(--ink-3);
     transition:color .2s,background .2s;}
   .theme-seg svg{width:15px;height:15px;display:block;}
   .theme-seg:hover{color:var(--ink);}
@@ -78,8 +78,8 @@
 
   /* CV header */
   .cv-head{border-bottom:1px solid var(--bd);padding-bottom:26px;margin-bottom:8px;}
-  .cv-head h1{font-family:var(--mono);font-weight:700;font-size:clamp(32px,6vw,52px);
-    letter-spacing:-.02em;margin:0 0 8px;color:var(--ink);}
+  .cv-head h1{font-family:var(--display);font-weight:700;font-size:clamp(42px,7vw,72px);
+    letter-spacing:-.07em;margin:0 0 8px;color:var(--ink);}
   .cv-head .role{font-family:var(--mono);color:var(--accent-3);font-size:16px;letter-spacing:.02em;}
   .cv-head .meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-family:var(--mono);
     font-size:12.5px;color:var(--ink-3);}
@@ -89,7 +89,7 @@
   .sheet h2{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--accent-3);margin:38px 0 18px;display:flex;align-items:center;gap:12px;}
   .sheet h2::after{content:"";flex:1;height:1px;background:var(--bd);}
-  .sheet h3{font-family:var(--mono);font-size:16px;color:var(--ink);margin:22px 0 2px;font-weight:600;}
+  .sheet h3{font-family:var(--display);font-size:20px;color:var(--ink);margin:22px 0 2px;font-weight:600;letter-spacing:-.03em;}
   .sheet h4{font-family:var(--mono);font-size:14px;color:var(--ink);margin:16px 0 2px;font-weight:500;}
   .sheet p{color:var(--ink-2);max-width:70ch;margin:6px 0;}
   .sheet em{color:var(--ink-3);font-style:normal;font-family:var(--mono);font-size:12.5px;}
@@ -135,7 +135,7 @@
 <div class="sheet">
   <header class="cv-head">
     <h1>{{ site.title }}</h1>
-    <div class="role">Junior DevOps Engineer · AI Infrastructure</div>
+    <div class="role">Junior System Engineer · AWS / DevOps · Software Development</div>
     <div class="meta">
       <a href="mailto:fasai.utawan@gmail.com">fasai.utawan@gmail.com</a>
       <a href="https://github.com/SkyShineTH" target="_blank" rel="noopener">github.com/SkyShineTH</a>
@@ -157,7 +157,7 @@
   function apply(){
     var eff=resolve(mode);root.classList.add("theme-switching");root.setAttribute("data-theme",eff);
     var meta=document.querySelector('meta[name="theme-color"]');
-    if(meta)meta.setAttribute("content",eff==="light"?"#eceef6":"#070a12");
+    if(meta)meta.setAttribute("content",eff==="light"?"#f1eee8":"#171d24");
     document.querySelectorAll(".theme-seg").forEach(function(b){
       var on=b.dataset.theme===mode;b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on));
     });

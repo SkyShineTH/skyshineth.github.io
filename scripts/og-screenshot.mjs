@@ -28,16 +28,18 @@ await context.addInitScript((theme) => {
 const page = await context.newPage();
 await page.goto(URL, { waitUntil: "networkidle" });
 
-// clean the card: drop the custom cursor dots + scroll cue, and force any
-// scroll-reveal elements visible in case they haven't been triggered yet.
+// Frame the introduction as a standalone social card.
 await page.addStyleTag({
   content: `
-    .cursor-core, .cursor-halo, #scrollcue { display: none !important; }
+    .site-header, .hero-actions, .hero-social { display: none !important; }
+    .hero { min-height: 630px !important; height: 630px !important; padding-block: 34px !important; }
+    .hero-visual { height: auto !important; aspect-ratio: 6 / 5 !important; }
+    .hero-visual * { animation: none !important; transition: none !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
   `,
 });
 
-// give WebGL + web fonts + reveals a beat to settle
+// Give web fonts a beat to settle.
 await page.waitForTimeout(1600);
 
 await page.screenshot({ path: OUT });

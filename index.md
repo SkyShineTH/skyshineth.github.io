@@ -1,12 +1,12 @@
 ---
 layout: portfolio
 title: "Fasai Utawan"
-subtitle: "Junior DevOps Engineer | AI Infrastructure | Data Science & Software Innovation"
+subtitle: "Junior System Engineer · AWS / DevOps · Software Development"
 
 about: |
-  Data Science & Software Innovation graduate who recently completed a 4-month DevOps internship at Artery Partner Co., Ltd.
-  Built Google Workspace integrations for Frappe/ERPNext, configured GCP IAM service accounts, automated internal workflows with GitLab CI/CD, and set up Grafana dashboards for observability.
-  Also developed portfolio projects in AI agent infrastructure, privacy-first AI inference, GitOps, and ML/data pipelines, with a focus on practical automation, safety boundaries, and reliable delivery.
+  I am a Junior System Engineer with a background in DevOps, cloud infrastructure, software development, and data technologies.
+
+  My internship experience and personal projects have involved CI/CD, Docker, Kubernetes, GitOps, monitoring, and infrastructure automation. I am continuing to strengthen my AWS and software engineering skills, with a long-term interest in DevSecOps and Cloud Security.
 
 skills:
   - category: "Programming Languages"
@@ -16,11 +16,11 @@ skills:
   - category: "Web & Mobile"
     items: ["React", "Next.js", "Django", "FastAPI", "Pydantic", "Frappe/ERPNext", "Flutter", "REST APIs"]
   - category: "DevOps & Cloud"
-    items: ["Docker", "Docker Compose", "Kubernetes", "Helm", "Argo CD", "Argo Rollouts", "Lens", "GitLab CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "Nginx", "Linux", "AWS", "GCP"]
+    items: ["AWS", "Linux", "CI/CD", "Docker", "Kubernetes", "Git", "GitHub Actions", "GitLab CI/CD", "Helm", "Argo CD", "Prometheus", "Grafana", "Docker Compose", "Argo Rollouts", "Lens", "Jenkins", "Nginx", "GCP"]
   - category: "Database & Data"
     items: ["PostgreSQL", "MySQL", "SQLite", "Pandas", "NumPy"]
   - category: "Tools & Visualization"
-    items: ["Git", "Jupyter Notebook", "Power BI", "Looker", "Postman"]
+    items: ["Jupyter Notebook", "Power BI", "Looker", "Postman"]
 
 certifications:
   - name: "AWS Academy Graduate — AWS Data Engineering"

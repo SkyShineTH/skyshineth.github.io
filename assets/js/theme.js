@@ -32,7 +32,7 @@
     root.classList.add("theme-switching");
     root.setAttribute("data-theme", eff);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", eff === "light" ? "#eceef6" : "#070a12");
+    if (meta) meta.setAttribute("content", eff === "light" ? "#f1eee8" : "#171d24");
     if (window.SkyScene && window.SkyScene.setTheme) window.SkyScene.setTheme(eff);
     syncButtons();
     // re-enable transitions after the new colours have painted.

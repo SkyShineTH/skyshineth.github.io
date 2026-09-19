@@ -2,389 +2,60 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title | default: site.title }} — Junior System Engineer · AWS / DevOps · Software Development</title>
 <meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
-<meta name="theme-color" content="#070a12">
+<meta name="theme-color" content="#171d24">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-
-<!-- favicons -->
 <link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
-
-<!-- Open Graph / social preview -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SkyShine — Fasai Utawan">
-<meta property="og:title" content="{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure">
+<meta property="og:type" content="website"><meta property="og:site_name" content="SkyShine — Fasai Utawan">
+<meta property="og:title" content="{{ page.title | default: site.title }} — Junior System Engineer · AWS / DevOps · Software Development">
 <meta property="og:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fasai Utawan — Junior DevOps Engineer · AI Infrastructure portfolio">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fasai Utawan — Junior System Engineer portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page.title | default: site.title }} — Junior DevOps Engineer · AI Infrastructure">
+<meta name="twitter:title" content="{{ page.title | default: site.title }} — Junior System Engineer · AWS / DevOps · Software Development">
 <meta name="twitter:description" content="{{ site.description | strip_html | strip_newlines | truncate: 200 }}">
 <meta name="twitter:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
-<script>
-/* FOUC-free theme: resolve + apply before first paint */
-(function () {
-  try {
-    var m = localStorage.getItem("skyshine-theme") || "dark";
-    var eff = m;
-    if (m === "auto") {
-      eff = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
-    }
-    if (eff !== "light") eff = "dark";
-    document.documentElement.setAttribute("data-theme", eff);
-    var mc = document.querySelector('meta[name="theme-color"]');
-    if (mc) mc.setAttribute("content", eff === "light" ? "#eceef6" : "#070a12");
-  } catch (e) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>(function(){try{var m=localStorage.getItem("skyshine-theme")||"dark";var t=m==="auto"?(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"):m;document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
 </head>
-<body>
-
-<!-- WebGL background + fallbacks -->
-<canvas id="scene" aria-hidden="true"></canvas>
-<div class="bg-fallback" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
-
-<!-- top progress -->
+<body class="editorial-portfolio">
 <div class="progress" id="progress" aria-hidden="true"></div>
-
-<!-- fixed chrome -->
-<a class="wordmark" href="#ch1" aria-label="SkyShine home">
-  <span class="dot"></span>
-  <span>SkyShine</span>
-  <span class="sub">/ {{ page.title | downcase }}</span>
-</a>
-
-<div class="topcta">
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button class="theme-seg" data-theme="light" data-hover aria-label="Light theme" title="Light theme">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-    </button>
-    <button class="theme-seg" data-theme="dark" data-hover aria-label="Dark theme" title="Dark theme">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.8A8.5 8.5 0 0 1 9.2 3.5 7.5 7.5 0 1 0 20.5 14.8z"/></svg>
-    </button>
-    <button class="theme-seg" data-theme="auto" data-hover aria-label="Auto theme (follows your device)" title="Auto — follows your device lighting">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
-    </button>
-  </div>
-  <a class="btn" href="{{ page.contact.cv | default: '/cv/' | relative_url }}" data-hover>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-    <span class="lbl">View CV</span>
-  </a>
-</div>
-
-<!-- chapter rail -->
-<nav class="rail" id="rail" aria-label="Chapters">
-  <a class="rail-dot" href="#ch1" data-go="0"><span class="label">Intro</span><span class="tick"></span><span>01</span></a>
-  <a class="rail-dot" href="#ch2" data-go="1"><span class="label">Origins</span><span class="tick"></span><span>02</span></a>
-  <a class="rail-dot" href="#ch3" data-go="2"><span class="label">Internship</span><span class="tick"></span><span>03</span></a>
-  <a class="rail-dot" href="#ch4" data-go="3"><span class="label">Projects</span><span class="tick"></span><span>04</span></a>
-  <a class="rail-dot" href="#ch5" data-go="4"><span class="label">Skills</span><span class="tick"></span><span>05</span></a>
-  <a class="rail-dot" href="#ch6" data-go="5"><span class="label">Contact</span><span class="tick"></span><span>06</span></a>
-</nav>
-
-<!-- motion toggle -->
-<button class="motion-toggle" id="motionToggle" aria-pressed="true">
-  <span class="led"></span><span id="motionLabel">Motion on</span>
-</button>
-
+<header class="site-header">
+  <a class="wordmark" href="#hero" aria-label="Fasai Utawan, back to top">FU<span class="wordmark-accent">.</span></a>
+  <nav class="site-nav" aria-label="Main navigation"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#open-source">Open source</a><a href="#capabilities">Capabilities</a><a href="#contact">Contact</a></nav>
+  <div class="header-actions"><div class="theme-switch" role="group" aria-label="Theme"><button class="theme-seg" data-theme="light" aria-label="Light theme" title="Light theme">☀</button><button class="theme-seg" data-theme="dark" aria-label="Dark theme" title="Dark theme">☾</button><button class="theme-seg" data-theme="auto" aria-label="Auto theme" title="Use device theme">◐</button></div><a class="header-cv" href="{{ page.contact.cv | default: '/cv/' | relative_url }}">CV ↗</a></div>
+</header>
 <main>
-
-  <!-- ============ CH.01 — HERO ============ -->
-  <section class="chapter hero" id="ch1" data-chapter="0" data-formation="0" data-screen-label="CH.01 Intro">
-    <div class="wrap">
-      <span class="eyebrow reveal">Portfolio · 2026</span>
-      {% assign np = page.title | split: " " %}
-      <h1 class="reveal">
-        <span class="ln">{{ np | first }}</span>
-        <span class="ln">{{ np | slice: 1, 20 | join: " " }}</span>
-      </h1>
-      <p class="role reveal">Junior <b>DevOps Engineer</b> &nbsp;·&nbsp; <b>AI Infrastructure</b></p>
-      <p class="lede pitch reveal">
-        I turn machine-learning ideas into systems that ship — GitOps pipelines,
-        Kubernetes platforms, and inference infrastructure that stays fast,
-        observable, and reproducible. Scroll to follow the story.
-      </p>
-      <div class="cta-row reveal">
-        <a class="btn btn-primary" href="#ch4" data-hover>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
-          See the work
-        </a>
-        <a class="btn" href="#ch6" data-hover>Get in touch</a>
-      </div>
-    </div>
+  <section class="hero section-shell" id="hero" aria-labelledby="hero-title">
+    <div class="hero-copy"><p class="eyebrow reveal">PORTFOLIO / FASAI UTAWAN</p><h1 id="hero-title" class="reveal">Fasai<br><span>Utawan.</span></h1><p class="hero-role reveal">Junior System Engineer</p><p class="hero-fields reveal">AWS / DevOps <span>·</span> Software Development <span>·</span> Data Technologies</p><p class="hero-description reveal">I work across system infrastructure and software development, supported by a foundation in DevOps, cloud technologies, data, and production-focused personal projects.</p><div class="hero-actions reveal"><a class="action-primary" href="#work">View Selected Work <span aria-hidden="true">↘</span></a><a class="action-text" href="{{ page.contact.cv | default: '/cv/' | relative_url }}">View CV ↗</a></div><div class="hero-social reveal"><a href="{{ page.contact.github }}" target="_blank" rel="noopener">GitHub ↗</a><a href="{{ page.contact.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:{{ page.contact.email }}">Email ↗</a></div></div>
+    {% include hero-architecture.html %}
   </section>
-
-  <!-- ============ CH.02 — ORIGINS ============ -->
-  <section class="chapter" id="ch2" data-chapter="1" data-formation="1" data-screen-label="CH.02 Origins">
-    <div class="wrap">
-      <div class="ch-grid">
-        <div>
-          <span class="eyebrow reveal">CH.02 — Origins</span>
-          <h2 class="ch-title reveal">Data Science<br>&amp; Software Innovation</h2>
-          <p class="lede reveal">
-            I'm a Data Science &amp; Software Innovation graduate from Ubon
-            Ratchathani University (GPAX 3.35). My coursework ran the full
-            lifecycle — machine learning and deep learning, data warehousing
-            and cloud computing, exploratory analytics, and computer vision.
-          </p>
-          <p class="lede reveal" style="margin-top:18px;">
-            Working that pipeline end to end taught me the real gap isn't
-            <em>training</em> a model — it's <em>shipping</em> one. That's what
-            pulled me toward DevOps and AI infrastructure: making models
-            deployable, reproducible and observable instead of leaving them
-            stranded in a notebook.
-          </p>
-        </div>
-        <div class="reveal">
-          <div class="card">
-            <div class="stats">
-              <div class="stat"><div class="n">BSc</div><div class="k">Data Science &amp; Software Innovation</div></div>
-              <div class="stat"><div class="n">3.35</div><div class="k">GPAX · Ubon Ratchathani University</div></div>
-            </div>
-            <p style="color:var(--ink-2); margin:24px 0 14px; font-size:15px;">Where it started</p>
-            <div class="chips">
-              <span class="chip">Machine Learning</span>
-              <span class="chip">Deep Learning</span>
-              <span class="chip">Computer Vision</span>
-              <span class="chip">Data Warehousing</span>
-              <span class="chip">Cloud Computing</span>
-              <span class="chip">Software Engineering</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="numbered-section section-shell" id="snapshot" aria-labelledby="snapshot-title"><div class="section-heading"><span class="section-index">01 / PROFILE</span><h2 id="snapshot-title">Professional<br>snapshot<span class="blue-dot">.</span></h2></div><div class="snapshot-grid"><div class="snapshot-item reveal"><span class="overline">Current</span><h3>Junior System Engineer</h3><p>IT System Infrastructure<br>BBTV New Media Co., Ltd.</p></div><div class="snapshot-item reveal"><span class="overline">Foundation</span><h3>AWS, DevOps, software and data</h3><p>Cloud · Systems · Development · Data</p></div><div class="snapshot-item reveal"><span class="overline">Future focus</span><h3>DevSecOps and Cloud Security</h3><p>A long-term professional direction.</p></div></div></section>
+  {% assign featured = site.projects | where: 'featured', true | sort: 'featured_order' %}
+  <section class="numbered-section work-section section-shell" id="work" aria-labelledby="work-title"><div class="section-heading"><span class="section-index">02 / SELECTED WORK</span><div><h2 id="work-title">Built to be<br>examined<span class="blue-dot">.</span></h2><p class="section-intro">Three projects that show how I approach delivery, inference systems, and permissions.</p></div></div>
+    {% for project in featured limit: 3 %}
+    <article class="project-story" aria-labelledby="project-{{ forloop.index }}-title"><div class="project-story-head"><span class="project-index">0{{ forloop.index }} / {{ project.featured_label | upcase }}</span><span class="project-status">{{ project.project_status }}</span></div><div class="project-story-grid"><div class="project-main reveal"><h3 id="project-{{ forloop.index }}-title">{{ project.short_title }}</h3><p class="project-focus">{{ project.project_focus }}</p><p class="project-summary">{{ project.project_summary }}</p><div class="project-links"><a href="{{ project.link }}" target="_blank" rel="noopener">View repository ↗</a>{% if project.case_study_link %}<a href="{{ project.case_study_link }}" target="_blank" rel="noopener">Case study ↗</a>{% endif %}</div></div><div class="project-evidence reveal">{% if project.image %}<figure class="project-image"><img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}" loading="lazy"><figcaption>{{ project.image_caption }}</figcaption></figure>{% else %}<div class="project-diagram" aria-label="AgentGate permission flow"><span>REQUEST</span><span>POLICY</span><span>APPROVAL</span><span>AUDIT</span></div>{% endif %}<div class="evidence-grid"><div><span class="overline">Built</span><p>{{ project.project_built }}</p></div><div><span class="overline">Validated</span><p>{{ project.project_validated }}</p></div><div><span class="overline">Security / operations</span><p>{{ project.project_operations }}</p></div></div><div class="project-stack">{% for item in project.stack limit: 9 %}<span>{{ item }}</span>{% endfor %}</div></div></div></article>
+    {% endfor %}
+    <div class="additional-work"><span class="overline">Also built</span><p><a href="https://github.com/SkyShineTH/Clinic-Demo" target="_blank" rel="noopener">Clinic Demo ↗</a><span>Full-stack deployment project</span><a href="https://clinic-demo.skyshine.online" target="_blank" rel="noopener">Live demo ↗</a></p><a href="{{ '/cv/#projects' | relative_url }}">Explore more projects in the CV ↗</a></div>
   </section>
-
-  <!-- ============ CH.03 — INTERNSHIP ============ -->
-  <section class="chapter" id="ch3" data-chapter="2" data-formation="2" data-screen-label="CH.03 Internship">
-    <div class="wrap">
-      <div class="ch-grid">
-        <div class="reveal">
-          <div class="card">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px;">
-              <div>
-                <div style="font-family:var(--mono); color:var(--accent-3); font-size:13px; letter-spacing:.14em;">ARTERY PARTNER</div>
-                <div style="font-family:var(--mono); font-size:20px; margin-top:6px;">DevOps Engineer Intern</div>
-              </div>
-              <div style="font-family:var(--mono); color:var(--ink-3); font-size:13px; white-space:nowrap;">4 months</div>
-            </div>
-            <p style="color:var(--ink-2); font-size:15px; margin:22px 0 14px;">Lived the full delivery loop</p>
-            <div class="chips">
-              <span class="chip">CI/CD</span>
-              <span class="chip">GCP</span>
-              <span class="chip">Docker</span>
-              <span class="chip">Kubernetes</span>
-              <span class="chip">GitLab CI/CD</span>
-              <span class="chip">Prometheus</span>
-              <span class="chip">Grafana</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <span class="eyebrow reveal">CH.03 — The Internship</span>
-          <h2 class="ch-title reveal">4 months in<br>the delivery loop</h2>
-          <p class="lede reveal">
-            At <strong>Artery Partner</strong> I built Google Workspace integrations
-            for Frappe/ERPNext, configured GCP IAM service accounts, and automated
-            internal workflows with a scheduled GitLab CI/CD pipeline — then wired
-            up Grafana dashboards and explored Prometheus instrumentation to make
-            that work observable.
-          </p>
-          <p class="lede reveal" style="margin-top:18px;">
-            I learned that the hard part isn't writing the YAML — it's making
-            deploys boring: predictable, observable, and safe to roll back. That
-            mindset now shapes everything I build.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH.04 — PROJECTS (sticky horizontal) ============ -->
-  {% assign featured = site.projects | where: "featured", true | sort: "featured_order" %}
-  {% assign panel_count = featured.size | plus: 1 %}
-  <section id="ch4" data-chapter="3" data-formation="3" data-screen-label="CH.04 Projects">
-    <div class="proj-scroll" id="projScroll" style="height: {{ panel_count | times: 100 }}vh;">
-      <div class="proj-sticky">
-        <div class="projects-track" id="projectsTrack">
-
-        <!-- intro panel -->
-        <div class="proj-panel intro-panel">
-          <div style="max-width:var(--maxw); margin:0 auto; width:100%;">
-            <span class="eyebrow">CH.04 — Featured Work</span>
-            <h2 class="ch-title" style="max-width:14ch;">{{ featured.size }} scenes from the build log</h2>
-            <p class="lede">Each project is a self-contained system — keep scrolling to walk through them. {{ featured.size }} scenes &rarr;</p>
-          </div>
-        </div>
-
-        {% for project in featured %}
-        <div class="proj-panel">
-          <div class="proj-inner">
-            <div>
-              <div class="proj-num">PROJECT {{ forloop.index | prepend: "0" | slice: -2, 2 }} / {{ project.featured_label | default: project.category | upcase }}</div>
-              <h3 class="proj-title">{{ project.short_title | default: project.title }}</h3>
-              <div class="proj-desc">{{ project.excerpt | markdownify }}</div>
-              <div class="chips">
-                {% for s in project.stack limit: 7 %}<span class="chip">{{ s }}</span>{% endfor %}
-              </div>
-              <div class="proj-links">
-                {% if project.demo_link %}
-                <a class="btn btn-primary" href="{{ project.demo_link }}" target="_blank" rel="noopener" data-hover>Live demo</a>
-                {% endif %}
-                {% if project.link %}
-                <a class="btn" href="{{ project.link }}" target="_blank" rel="noopener" data-hover>
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
-                  GitHub
-                </a>
-                {% endif %}
-              </div>
-            </div>
-            {% if project.image %}
-            <div class="ph proj-ph"><img src="{{ project.image | relative_url }}" alt="{{ project.short_title | default: project.title }} screenshot" loading="lazy"></div>
-            {% else %}
-            <div class="ph proj-ph"><span class="ph-tag">[ {{ project.short_title | default: project.title | downcase | truncate: 28, "" }} ]</span></div>
-            {% endif %}
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH.04b — MORE PROJECTS ============ -->
-  {% assign nonfeatured = site.projects | where_exp: "p", "p.featured != true" | sort: "path" | reverse %}
-  {% if nonfeatured.size > 0 %}
-  <section class="chapter more-projects" data-chapter="3" data-formation="3" data-screen-label="CH.04 More Projects">
-    <div class="wrap">
-      <span class="eyebrow reveal">CH.04 — More Work</span>
-      <h2 class="ch-title reveal" style="font-size:clamp(28px,4vw,48px);">More from the lab</h2>
-      <p class="lede reveal">A few more projects worth a look — pulled straight from the build log.</p>
-      <div class="more-grid">
-        {% for project in nonfeatured limit: 3 %}
-        <article class="card more-card reveal">
-          <div class="more-cat">{{ project.category | upcase }}</div>
-          <h3 class="more-title">{{ project.short_title | default: project.title | split: " - " | first | split: "—" | first | strip }}</h3>
-          <div class="more-desc">{{ project.excerpt | strip_html | strip | truncate: 150 }}</div>
-          <div class="chips">{% for s in project.stack limit: 5 %}<span class="chip">{{ s }}</span>{% endfor %}</div>
-          <div class="proj-links" style="margin-top:18px;">
-            {% if project.demo_link %}<a class="btn btn-primary" href="{{ project.demo_link }}" target="_blank" rel="noopener" data-hover>Live</a>{% endif %}
-            {% if project.link %}<a class="btn" href="{{ project.link }}" target="_blank" rel="noopener" data-hover>GitHub</a>{% endif %}
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      <p class="reveal" style="margin-top:28px; font-family:var(--mono); font-size:13px;">
-        <a href="{{ page.contact.cv | default: '/cv/' | relative_url }}#projects" data-hover style="color:var(--accent-3);">See every project in the full CV &rarr;</a>
-      </p>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- ============ CH.05 — SKILLS + CERTS ============ -->
-  <section class="chapter" id="ch5" data-chapter="4" data-formation="4" data-screen-label="CH.05 Skills">
-    <div class="wrap">
-      <span class="eyebrow reveal">CH.05 — Toolbox</span>
-      <h2 class="ch-title reveal">Skills &amp; Certifications</h2>
-      <p class="lede reveal">The stack I reach for across the model-to-production journey.</p>
-
-      <div class="skills-grid">
-        {% for group in page.skills %}
-        <div class="skill-group reveal">
-          <h3><span class="gi">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span> {{ group.category }}</h3>
-          <div class="chips">
-            {% for item in group.items %}<span class="chip">{{ item }}</span>{% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-      {% if page.certifications and page.certifications.size > 0 %}
-      <h3 class="reveal" style="font-size:16px; letter-spacing:.04em; margin:54px 0 0; color:var(--ink-2);">Certifications</h3>
-      <div class="cert-list">
-        {% for cert in page.certifications %}
-        <div class="cert reveal">
-          <div class="badge">{{ cert.badge | default: cert.issuer | truncate: 3, "" | upcase }}</div>
-          <div>
-            <div class="c-name">{{ cert.name }}</div>
-            <div class="c-meta">{{ cert.issuer }}{% if cert.issued %} · {{ cert.issued }}{% endif %}</div>
-            {% if cert.url %}<a class="c-link" href="{{ cert.url }}" target="_blank" rel="noopener" data-hover>Verify credential &rarr;</a>{% endif %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if page.achievements and page.achievements.size > 0 %}
-      <h3 class="reveal" style="font-size:16px; letter-spacing:.04em; margin:54px 0 0; color:var(--ink-2);">Achievements &amp; Awards</h3>
-      <div class="cert-list">
-        {% for a in page.achievements %}
-        <div class="cert reveal">
-          <div class="badge">{{ a.badge | default: a.issuer | truncate: 3, "" | upcase }}</div>
-          <div>
-            <div class="c-name">{{ a.name }}</div>
-            <div class="c-meta">{{ a.issuer }}{% if a.issued %} · {{ a.issued }}{% endif %}</div>
-            {% if a.detail %}<div class="c-meta" style="margin-top:4px;">{{ a.detail }}</div>{% endif %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </div>
-  </section>
-
-  <!-- ============ CH.06 — CONTACT ============ -->
-  <section class="chapter contact" id="ch6" data-chapter="5" data-formation="5" data-screen-label="CH.06 Contact">
-    <div class="wrap">
-      <span class="eyebrow reveal" style="justify-content:center;">CH.06 — Let's build</span>
-      <h2 class="ch-title reveal">Let's ship<br>something.</h2>
-      <p class="lede reveal">
-        Looking for a junior DevOps engineer who already thinks in pipelines,
-        containers, and reproducible infra? I'd love to talk.
-      </p>
-      {% if page.contact.email %}
-      <a class="contact-mail reveal" href="mailto:{{ page.contact.email }}" data-hover>{{ page.contact.email }}</a>
-      {% endif %}
-      <div class="contact-links reveal">
-        {% if page.contact.email %}<a class="btn btn-primary" href="mailto:{{ page.contact.email }}" data-hover>Email me</a>{% endif %}
-        {% if page.contact.github %}<a class="btn" href="{{ page.contact.github }}" target="_blank" rel="noopener" data-hover>GitHub</a>{% endif %}
-        {% if page.contact.linkedin %}<a class="btn" href="{{ page.contact.linkedin }}" target="_blank" rel="noopener" data-hover>LinkedIn</a>{% endif %}
-        {% if page.contact.website %}<a class="btn" href="{{ page.contact.website }}" target="_blank" rel="noopener" data-hover>{{ page.contact.website | remove: "https://" | remove: "http://" }}</a>{% endif %}
-      </div>
-      <div class="colophon reveal">© 2026 {{ page.title }} · SkyShine · Built as a static site for GitHub Pages</div>
-    </div>
-  </section>
-
+  <section class="numbered-section section-shell" id="experience" aria-labelledby="experience-title"><div class="section-heading"><span class="section-index">03 / EXPERIENCE</span><h2 id="experience-title">Professional<br>experience<span class="blue-dot">.</span></h2></div><div class="timeline"><article class="timeline-entry reveal"><div class="timeline-date">Jun 2026 – Present</div><div><h3>Junior System Engineer</h3><p class="timeline-place">BBTV New Media Co., Ltd. <span>·</span> IT System Infrastructure</p><p>Contributing to internal technology initiatives as part of the IT System Infrastructure team.</p></div></article><article class="timeline-entry reveal"><div class="timeline-date">Nov 2025 – Mar 2026</div><div><h3>DevOps Engineering Intern</h3><p class="timeline-place">Artery Partner Co., Ltd.</p><p>Worked on Google Workspace integrations for Frappe/ERPNext, GCP IAM service accounts, scheduled GitLab CI/CD workflows, and observability with Grafana and Prometheus.</p></div></article></div></section>
+  <section class="numbered-section section-shell" id="open-source" aria-labelledby="open-title"><div class="section-heading"><span class="section-index">04 / OPEN SOURCE</span><h2 id="open-title">A contribution<br>you can verify<span class="blue-dot">.</span></h2></div><div class="open-source-row reveal"><span class="os-mark">Argo CD<br><small>MERGED PR</small></span><div><h3>Documentation version banner</h3><p>Contributed a fix that links the documentation version banner to the equivalent page in the stable version.</p></div><a href="https://github.com/argoproj/argo-cd/pull/27054" target="_blank" rel="noopener">View merged PR ↗</a></div></section>
+  <section class="numbered-section section-shell" id="education" aria-labelledby="education-title"><div class="section-heading"><span class="section-index">05 / EDUCATION</span><h2 id="education-title">Education &amp;<br>credentials<span class="blue-dot">.</span></h2></div><div class="credential-list"><div class="credential-row reveal"><span>2022–2026</span><div><h3>B.Sc. in Data Science and Software Innovation</h3><p>Ubon Ratchathani University · GPAX 3.35/4.00</p></div></div>{% for cert in page.certifications %}<div class="credential-row reveal"><span>{{ cert.issued }}</span><div><h3>{% if cert.url %}<a href="{{ cert.url }}" target="_blank" rel="noopener">{{ cert.name }} ↗</a>{% else %}{{ cert.name }}{% endif %}</h3><p>{{ cert.issuer }}</p></div></div>{% endfor %}{% assign hackathon = page.achievements | first %}<div class="credential-row reveal"><span>{{ hackathon.issued }}</span><div><h3>{{ hackathon.name }}</h3><p>{{ hackathon.issuer }}</p></div></div></div></section>
+  <section class="numbered-section section-shell" id="capabilities" aria-labelledby="capabilities-title"><div class="section-heading"><span class="section-index">06 / CAPABILITIES</span><div><h2 id="capabilities-title">How I work<br>with technology<span class="blue-dot">.</span></h2><p class="section-intro">Capabilities developed through coursework, internship experience, and personal projects.</p></div></div><div class="capability-list"><div class="capability-row reveal"><span>01</span><h3>Cloud and systems</h3><p>AWS · Linux · Networking · Infrastructure</p></div><div class="capability-row reveal"><span>02</span><h3>Delivery and operations</h3><p>CI/CD · Docker · Kubernetes · Helm · Argo CD · GitHub Actions · GitLab CI/CD</p></div><div class="capability-row reveal"><span>03</span><h3>Observability</h3><p>Prometheus · Grafana · Logging · Monitoring</p></div><div class="capability-row reveal"><span>04</span><h3>Software and data</h3><p>Python · Go · TypeScript · SQL · PostgreSQL · Data technologies</p></div><div class="capability-row reveal"><span>05</span><h3>Security-focused practices</h3><p>RBAC · CodeQL · Trivy · Dependency scanning · Audit logging · Policy enforcement</p></div></div></section>
+  <section class="numbered-section section-shell" id="developing" aria-labelledby="developing-title"><div class="section-heading"><span class="section-index">07 / CURRENTLY DEVELOPING</span><h2 id="developing-title">The next<br>direction<span class="blue-dot">.</span></h2></div><div class="developing-layout"><p class="developing-lede reveal">My current role is system engineering. These are areas I am studying and developing toward, especially DevSecOps and Cloud Security.</p><ol class="learning-list reveal"><li>AWS certification preparation</li><li>Secure software design</li><li>DevSecOps practices</li><li>Cloud Security</li><li>Low-level systems and x86-64</li><li>Defensive reverse engineering in controlled environments</li></ol></div></section>
+  <section class="numbered-section contact-section section-shell" id="contact" aria-labelledby="contact-title"><span class="section-index">08 / LET'S CONNECT</span><h2 id="contact-title">Interested in my work<br>or technical collaboration<span class="blue-dot">?</span></h2><p>Feel free to connect and explore my work across cloud, software, data, and security.</p><div class="contact-actions"><a href="{{ page.contact.github }}" target="_blank" rel="noopener">GitHub ↗</a><a href="{{ page.contact.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:{{ page.contact.email }}">Email me ↗</a></div></section>
 </main>
-
-<div class="scrollcue" id="scrollcue" aria-hidden="true"><span>Scroll</span><span class="line"></span></div>
-
-<!-- libraries -->
-<script src="https://unpkg.com/three@0.137.5/build/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<!-- app -->
-<script src="{{ '/assets/js/scene.js' | relative_url }}"></script>
+<footer class="site-footer"><div class="section-shell"><div><strong>FU<span>.</span></strong><span>Fasai Utawan<br>Junior System Engineer</span></div><p>Build · Learn · Improve</p><a href="#hero">Back to top ↑</a></div></footer>
 <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/trail.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/scroll.js' | relative_url }}"></script>
-
+<script src="{{ '/assets/js/hero-architecture.js' | relative_url }}"></script>
 </body>
 </html>

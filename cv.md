@@ -6,7 +6,7 @@ permalink: /cv/
 
 ## Professional Summary
 
-Data Science & Software Innovation graduate with 4 months of hands-on DevOps internship experience building CI/CD pipelines, working with Kubernetes clusters on GCP, and integrating cloud services with internal tools. Built practical portfolio projects across AI agent infrastructure, privacy-first AI inference, GitOps, computer vision, and data engineering with clear documentation and reproducible workflows. Seeking roles in DevOps, MLOps, AI infrastructure, or Data Engineering where automation and reliability matter.
+Junior System Engineer with a background in DevOps, cloud infrastructure, software development, and data technologies. Internship experience and personal projects include CI/CD, Docker, Kubernetes, GitOps, monitoring, and infrastructure automation. Currently strengthening AWS and software engineering skills, with a long-term interest in DevSecOps and Cloud Security.
 
 ---
 
@@ -14,7 +14,7 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 ### Ubon Ratchathani University
 **Bachelor of Science in Data Science and Software Innovation**  
-*2022 - 2026 (Expected)* | **GPAX: 3.35 / 4.00**
+*2022–2026* | **GPAX: 3.35 / 4.00**
 
 **Relevant Coursework:** Machine Learning & Deep Learning, Data Warehousing & Cloud Computing, Exploratory Data Analytics, Software Engineering & Web Programming, Image Analytics & Computer Vision
 
@@ -22,8 +22,13 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 ## Work Experience
 
+### Junior System Engineer — BBTV New Media Co., Ltd.
+*Jun 2026 – Present · Contract · IT System Infrastructure*
+
+Contributing to internal technology initiatives as part of the IT System Infrastructure team.
+
 ### DevOps Engineering Intern — Artery Partner Co., Ltd.
-*Nov 2025 - Mar 2026*
+*Nov 2025 – Mar 2026*
 
 - Developed Google Tasks, Calendar, and Drive integrations for Frappe/ERPNext to automate workflow processes; wrote Cypress end-to-end tests covering both features
 - Configured GCP IAM service accounts and enabled Google Workspace APIs (Tasks, Calendar, Drive) to connect ERP services with Google
@@ -41,7 +46,7 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 **Web & API Development:** React, Next.js, Flutter, Django, FastAPI, Pydantic, Frappe/ERPNext, REST APIs, HTML/CSS
 
-**DevOps & Infrastructure:** Docker, Docker Compose, Kubernetes, Helm, Argo CD, Argo Rollouts, Lens/OpenLens, GitLab CI/CD, GitHub Actions, Jenkins, Prometheus, Grafana, Nginx, Linux, Git
+**DevOps & Infrastructure:** AWS, Linux, CI/CD, Docker, Kubernetes, Git, GitHub Actions, GitLab CI/CD, Helm, Argo CD, Prometheus, Grafana, Docker Compose, Argo Rollouts, Lens/OpenLens, Jenkins, Nginx
 
 **Cloud Platforms:** AWS (Amazon Web Services), Google Cloud Platform (GCP)
 
@@ -63,11 +68,11 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 - Added a SQLite approval queue, approval edit history, JSONL or SQLite audit logs, CLI inspection commands, and regression tests for safer agent automation workflows
 
 ### FaceRatioOps — Privacy-First AI Inference API
-[Live](https://faceratioops.skyshine.online) | [GitHub](https://github.com/SkyShineTH/FaceRatioOps) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, React, Vite, TypeScript, Docker, Docker Compose, Caddy, GHCR, Prometheus, Grafana, Node Exporter, GitHub Actions, CodeQL, Trivy, k6, pytest, ruff
+[GitHub](https://github.com/SkyShineTH/FaceRatioOps) | [Screenshots and deployment documentation](https://github.com/SkyShineTH/FaceRatioOps#project-status-decommissioned) | **Technologies:** Python, FastAPI, MediaPipe, Pillow, NumPy, Pydantic, React, Vite, TypeScript, Docker, Docker Compose, Caddy, GHCR, Prometheus, Grafana, Node Exporter, GitHub Actions, CodeQL, Trivy, k6, pytest, ruff
 
 - Built a FastAPI inference service that analyzes MediaPipe face landmarks from bounded image uploads and returns geometric ratios with explainability overlay data, processing image bytes in memory only and avoiding image payload logging
 - Added a React + TypeScript browser workbench and an interactive architecture diagram, built with Vite and served by FastAPI as a single container alongside health, model-info, and Prometheus-style metrics endpoints
-- Deployed to production on a DigitalOcean Droplet with Caddy reverse proxy and Cloudflare DNS, monitored with Prometheus, Grafana, and Node Exporter
+- Previously deployed on a DigitalOcean Droplet with Caddy reverse proxy and Cloudflare DNS, monitored with Prometheus, Grafana, and Node Exporter; the demo was decommissioned on 2026-07-09
 - Automated delivery with GitHub Actions: image publishing to GHCR, SSH-based deployment with health checks and documented rollback, plus CodeQL, Trivy image scanning, and Dependabot
 - Validated with deterministic pytest tests, ruff and ESLint linting, Vitest frontend tests, and k6 load tests against a documented SLO, and documented safety boundaries against recognition, identity matching, attractiveness scoring, and sensitive attribute inference
 
@@ -90,11 +95,11 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 - Utilized Docker Compose for orchestrating multi-container application deployment
 
 ### Shipyard — GitOps Platform
-[Live Demo](https://shipyard.skyshine.online) | [GitHub](https://github.com/SkyShineTH/Shipyard) | **Technologies:** React, Go, PostgreSQL, Docker, DOKS, Helm, Argo CD, Argo Rollouts, GitHub Actions, GHCR
+[GitHub](https://github.com/SkyShineTH/Shipyard) | [Deployment case study](https://github.com/SkyShineTH/Shipyard/blob/main/docs/doks-live-demo.md) | **Technologies:** React, Go, PostgreSQL, Docker, DOKS, Helm, Argo CD, Argo Rollouts, GitHub Actions, GHCR
 
 - Built a full-stack GitOps portfolio platform with a React (Vite) frontend and Go microservices (JWT auth, todo CRUD, platform-status snapshot API) backed by PostgreSQL
-- Deployed an on-demand DigitalOcean Kubernetes demo with Argo CD Applications, a DigitalOcean Load Balancer, Cloudflare strict SSL, and PostgreSQL on Block Storage
-- Tuned resource requests and replica counts to keep the live demo running on a small 1-node cluster while preserving the GitOps workflow
+- Previously deployed an on-demand DigitalOcean Kubernetes demo with Argo CD Applications, a DigitalOcean Load Balancer, Cloudflare strict SSL, and PostgreSQL on Block Storage; the environment was decommissioned on 2026-06-12
+- Tuned resource requests and replica counts for the former demo on a small 1-node cluster while preserving the GitOps workflow
 - Packaged services with Helm charts and used Argo Rollouts for canary-style progressive delivery on the todo service
 - Implemented 4 path-filtered GitHub Actions CI workflows per service; added a public case-study page backed by the platform-status API with scoped Kubernetes RBAC
 
@@ -178,7 +183,7 @@ Data Science & Software Innovation graduate with 4 months of hands-on DevOps int
 
 **Languages:** Thai (Native), English (B1 - Good reading & listening, basic speaking)
 
-**Learning Focus:** Deepening knowledge in DevOps practices, cloud infrastructure management, MLOps, and CI/CD automation
+**Learning Focus:** Strengthening AWS and Software Engineering skills; studying DevSecOps and Cloud Security as long-term directions
 
 **Open Source Contributions:** Active GitHub contributor with multiple public repositories showcasing diverse technical skills
 
