@@ -11,7 +11,7 @@
 }
 @media (prefers-color-scheme: light) {
   .pg {
-    --bg: #dbe8fa; --fg: #14123a; --muted: #33406e; --soft: #4a5684; --kick: #2b6cff; --pink: #d81b7c;
+    --bg: #dbe8fa; --fg: #14123a; --muted: #33406e; --soft: #4a5684; --kick: #1f5ae6; --pink: #d81b7c;
     --line: #b7c3ea; --btn-bg: rgba(255, 255, 255, 0.6); --btnp-bg: #14123a; --btnp-fg: #ffffff; --hover: #2b6cff;
     --scrim: rgba(238, 243, 252, 0.9); --haze: rgba(236, 244, 254, 0.9); --tshadow: 0 1px 16px rgba(255, 255, 255, 0.95);
     --sheet-bg: rgba(255, 255, 255, 0.86); --sheet-line: rgba(43, 108, 255, 0.3); --section: #eef2fb; --field: rgba(255, 255, 255, 0.85);
@@ -31,7 +31,7 @@
   --flash-c: radial-gradient(circle at 50% 50%, #ffffff 0%, #00e5ff 45%, #0b0720 100%);
 }
 .pg.force-light {
-    --bg: #dbe8fa; --fg: #14123a; --muted: #33406e; --soft: #4a5684; --kick: #2b6cff; --pink: #d81b7c;
+    --bg: #dbe8fa; --fg: #14123a; --muted: #33406e; --soft: #4a5684; --kick: #1f5ae6; --pink: #d81b7c;
     --line: #b7c3ea; --btn-bg: rgba(255, 255, 255, 0.6); --btnp-bg: #14123a; --btnp-fg: #ffffff; --hover: #2b6cff;
     --scrim: rgba(238, 243, 252, 0.9); --haze: rgba(236, 244, 254, 0.9); --tshadow: 0 1px 16px rgba(255, 255, 255, 0.95);
     --sheet-bg: rgba(255, 255, 255, 0.86); --sheet-line: rgba(43, 108, 255, 0.3); --section: #eef2fb; --field: rgba(255, 255, 255, 0.85);
