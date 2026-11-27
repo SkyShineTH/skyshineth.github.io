@@ -198,7 +198,11 @@
     },
 
     waitBoot(n) {
-      if (window.THREE && window.gsap && window.ScrollTrigger) this.boot();
+      // Build the scene when the browser is idle, so the first screen can respond to taps right away.
+      if (window.THREE && window.gsap && window.ScrollTrigger) {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(() => this.boot(), { timeout: 1200 });
+        else setTimeout(() => this.boot(), 150);
+      }
       else if (n < 150) this._timer = setTimeout(() => this.waitBoot(n + 1), 100);
     },
 
@@ -215,6 +219,7 @@
       this._tick = null;
       if (this._onResize) window.removeEventListener('resize', this._onResize);
       if (this._onPointer) window.removeEventListener('pointermove', this._onPointer);
+      if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
       if (this.scene) {
         this.scene.traverse((o) => {
           if (o.geometry) o.geometry.dispose();
@@ -1105,11 +1110,19 @@
       };
 
       let last = performance.now();
+      // While nobody is scrolling, draw every third frame only; this saves battery and frees the main thread.
+      let lastScroll = 0, frame = 0, slow = 0, slowN = 0;
+      this._onScroll = () => { lastScroll = performance.now(); };
+      window.addEventListener('scroll', this._onScroll, { passive: true });
       this._tick = () => {
         const now = performance.now();
+        frame++;
+        if (now - lastScroll > 900 && frame % 3 !== 0) return;
         const dt = Math.min(0.05, (now - last) / 1000); last = now;
         const r = story.getBoundingClientRect();
         if (r.bottom < 0 || r.top > window.innerHeight) return;
+        // If drawing is slow on this device, drop to 1x pixel density once.
+        if (slowN < 40 && now - lastScroll < 900) { slow += dt; slowN++; if (slowN === 40 && slow / 40 > 0.04 && renderer.getPixelRatio() > 1) { renderer.setPixelRatio(1); this._onResize(); } }
         const a = tg.attributes.position;
         for (let i = 0; i < trN; i++) {
           let z = a.getZ(i) + tv[i] * dt;
