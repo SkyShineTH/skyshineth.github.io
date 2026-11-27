@@ -56,6 +56,10 @@ body { margin: 0; background: #05031a; }
 .langs { position: absolute; z-index: 5; top: max(14px, env(safe-area-inset-top)); right: 16px; display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--btn-bg); }
 .langs button { min-width: 44px; min-height: 36px; border: 0; border-radius: 999px; background: transparent; color: var(--fg); font: 500 13px/1 'JetBrains Mono', monospace; letter-spacing: 0.1em; cursor: pointer; }
 .langs button[aria-pressed="true"] { background: var(--btnp-bg); color: var(--btnp-fg); }
+/* Music toggle, left of the language switch; off until pressed. */
+.snd { position: absolute; z-index: 5; top: max(14px, env(safe-area-inset-top)); right: 128px; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: var(--btn-bg); color: var(--soft); font: 500 18px/1 'Space Grotesk', sans-serif; cursor: pointer; }
+.snd[aria-pressed="true"] { background: var(--btnp-bg); color: var(--btnp-fg); border-color: var(--btnp-bg); }
+.snd:focus-visible, .langs button:focus-visible { outline: 2px solid var(--hover); outline-offset: 2px; }
 .hero, .end { position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-sizing: border-box; padding: 0 5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(18px, 3.2vh, 34px); z-index: 3; }
 .end { opacity: 0; visibility: hidden; pointer-events: none; }
 .lockup { display: flex; flex-direction: column; align-items: center; gap: 12px; width: min(560px, 84vw); }
@@ -114,6 +118,7 @@ body { margin: 0; background: #05031a; }
   .panel h2 { font-size: 28px; }
   .det summary { display: list-item; cursor: pointer; font: 500 13px/1.2 'JetBrains Mono', monospace; letter-spacing: 0.1em; color: var(--kick); min-height: 32px; }
   .langs { top: max(10px, env(safe-area-inset-top)); right: 10px; }
+  .snd { top: max(10px, env(safe-area-inset-top)); right: 120px; }
 }
 .dbg { position: fixed; z-index: 50; left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: 1px dashed var(--pink); border-radius: 12px; background: var(--sheet-bg); color: var(--fg); font: 500 12px/1.3 'JetBrains Mono', monospace; letter-spacing: 0.06em; }
 .dbg-row { display: flex; gap: 4px; }

@@ -28,12 +28,14 @@ about:
 projects:
   - title: "Shipyard"
     billboard: ["SHIPYARD", "GITOPS"]
+    # Optional picture on the 3D sign (about 1024 x 640). Leave it out to show the big text instead.
+    bill_image: "/assets/images/projects/shipyard-billboard.webp"
     badge: "Personal project · Demo decommissioned"
     tagline: "A GitOps platform built to learn progressive delivery on Kubernetes."
     tags: ["React", "Go", "PostgreSQL", "Helm", "Argo CD", "Argo Rollouts"]
     about: "Shipyard is a small microservices app (React frontend, Go services, PostgreSQL) deployed entirely through Git. Argo CD syncs the cluster from the repository, and Argo Rollouts releases new versions as canaries. I built it on my own while studying, to see how a GitOps delivery flow works end to end."
     built:
-      # TODO: add one line on what the app does, e.g. "A ... service that ..."
+      - "A React frontend and Go services for login, to-dos and platform status, backed by PostgreSQL"
       - "Helm charts and an Argo CD setup that deploy the services from Git"
       - "Canary releases with Argo Rollouts"
     learned: []  # TODO: one thing, in your own words
