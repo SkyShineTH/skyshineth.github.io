@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>{{ page.title }} · {{ page.role }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+<meta name="author" content="{{ page.title }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta name="theme-color" content="#05031a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#dbe8fa" media="(prefers-color-scheme: light)">
+<link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/images/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ page.title }}">
+<meta property="og:title" content="{{ page.title }} · {{ page.role }}">
+<meta property="og:description" content="{{ page.description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The fasai utawan logo, a cloud with a rising sun, over a neon synthwave horizon.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title }} · {{ page.role }}">
+<meta name="twitter:description" content="{{ page.description | escape }}">
+<meta name="twitter:image" content="{{ '/assets/images/og-cover.png' | absolute_url }}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":{{ page.title | jsonify }},"url":{{ site.url | append: '/' | jsonify }},"jobTitle":{{ page.role | jsonify }},"description":"Junior system engineer growing toward DevSecOps and cloud security.","sameAs":[{{ page.contact.github | jsonify }},{{ page.contact.linkedin | jsonify }}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/story.css' | relative_url }}">
+<!-- The libraries load with "defer", so the page shows before the 3D scene is ready. -->
+<script src="{{ '/assets/js/lib/gsap.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/lib/ScrollTrigger.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/lib/three.slim.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/story.js' | relative_url }}" defer></script>
+</head>
+<body>
+<div class="pg lang-en">
+<a class="skip" href="#contact" data-go="4">Skip to contact</a>
+
+<nav class="cnav" aria-label="Sections">
+{% assign chapters = "Home,About,Work,Skills,Contact" | split: "," %}
+{% for c in chapters %}<button type="button" class="cn" data-go="{{ forloop.index0 }}" aria-label="{{ c }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"><span class="cn-dot"></span><span class="cn-label" aria-hidden="true">{{ c }}</span></button>
+{% endfor %}</nav>
+
+<div class="dbg" role="group" aria-label="Debug: colour mode" hidden>
+<span>DEBUG · MODE</span>
+<div class="dbg-row">
+<button type="button" data-mode="auto" aria-pressed="true">Auto</button>
+<button type="button" data-mode="dark" aria-pressed="false">มืด</button>
+<button type="button" data-mode="light" aria-pressed="false">สว่าง</button>
+</div>
+<small class="dbg-status">device: – · showing: –</small>
+</div>
+
+<div class="story">
+<div class="stage">
+<canvas class="gl" aria-hidden="true"></canvas>
+<div class="ov vig"></div>
+
+<div class="langs" role="group" aria-label="Language">
+<button type="button" data-lang="en" aria-pressed="true">EN</button>
+<button type="button" data-lang="th" aria-pressed="false">TH</button>
+</div>
+
+<header class="hero" id="top">
+<div class="lockup">
+<svg class="lg" viewBox="70 70 450 190" role="img" aria-label="fasai utawan: a cloud outline around the word fasai, with the dot of the i as a rising sun">
+<defs>
+<linearGradient id="fSunG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"></stop><stop offset="1" stop-color="#ff2e97"></stop></linearGradient>
+<mask id="fStripe" maskContentUnits="objectBoundingBox"><rect x="0" y="0" width="1" height="1" fill="#fff"></rect><rect x="0" y="0.6" width="1" height="0.03" fill="#000"></rect><rect x="0" y="0.69" width="1" height="0.045" fill="#000"></rect><rect x="0" y="0.79" width="1" height="0.06" fill="#000"></rect></mask>
+<clipPath id="fClip"><rect x="380" y="60" width="100" height="88"></rect></clipPath>
+<symbol id="fLogo" viewBox="70 70 450 190" overflow="visible">
+<g clip-path="url(#fClip)"><g class="rise"><circle cx="426" cy="134" r="17" fill="url(#fSunG)" mask="url(#fStripe)"></circle></g></g>
+<path d="M 140 240 C 88 240 80 168 136 164 C 136 104 228 80 270 132 C 300 72 400 84 398 148 L 452 148 C 494 148 496 240 452 240" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--logo-gap)"></path>
+<path d="M 140 240 C 88 240 80 168 136 164 C 136 104 228 80 270 132 C 300 72 400 84 398 148 L 452 148 C 494 148 496 240 452 240" fill="none" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--logo-fg)"></path>
+<text x="152" y="240" textLength="256" lengthAdjust="spacingAndGlyphs" font-family="Poppins, sans-serif" font-weight="700" font-size="120" style="fill: var(--logo-fg)">fasa</text>
+<rect x="418" y="174" width="16" height="66" style="fill: var(--logo-fg)"></rect>
+</symbol>
+</defs>
+<use href="#fLogo" x="70" y="70" width="450" height="190"></use>
+</svg>
+<div class="uta" aria-hidden="true">utawan</div>
+</div>
+<div class="copy">
+<h1 class="h1">{{ page.title }}.</h1>
+<p class="role">{{ page.tagline }}</p>
+<div class="btns">
+<a class="btn btn-p" href="#work" data-go="2">Selected work</a>
+<a class="btn" href="{{ page.contact.cv | relative_url }}">CV</a>
+<a class="btn" href="{{ page.contact.github }}" target="_blank" rel="noopener">GitHub</a>
+<a class="btn" href="{{ page.contact.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+</div>
+<div class="hint"><span>SCROLL ↓</span><span aria-hidden="true">·</span><button type="button" data-go="4">skip to contact</button></div>
+</header>
+
+{% for a in page.about %}<section class="panel l a{{ forloop.index }}" aria-label="About: {{ a.label | downcase }}">
+<div class="kick">0{{ forloop.index }} / ABOUT · {{ a.label }}</div>
+<div class="en"><h2>{{ a.en_title }}</h2><p>{{ a.en }}</p></div>
+<div class="th" lang="th"><h2>{{ a.th_title }}</h2><p>{{ a.th }}</p></div>
+</section>
+{% endfor %}
+{% for p in page.projects %}<article class="panel {% cycle 'r', 'l' %} p{{ forloop.index }}" data-bill="{{ p.billboard | join: '|' | escape }}">
+<span class="badge">{{ p.badge }}</span>
+<h2>{{ p.title }}</h2>
+<p class="tagline">{{ p.tagline }}</p>
+{% if p.tags.size > 0 %}<div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>{% endif %}
+{% if p.about != "" or p.built.size > 0 or p.learned.size > 0 %}<details class="det" open><summary>Details</summary>
+{% if p.about != "" %}<p>{{ p.about }}</p>{% endif %}
+{% if p.built.size > 0 %}<h3>BUILT</h3><ul>{% for b in p.built %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+{% if p.learned.size > 0 %}<h3>LEARNED</h3><ul>{% for l in p.learned %}<li>{{ l }}</li>{% endfor %}</ul>{% endif %}
+</details>{% endif %}
+<div class="links">{% for l in p.links %}<a class="btn" href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}</div>
+</article>
+{% endfor %}
+<div class="more"><a class="btn btn-p" href="{{ page.contact.github }}" target="_blank" rel="noopener">More on GitHub →</a></div>
+
+<!-- Skills are drawn on the terminal screen in 3D; this copy is for screen readers and search engines. -->
+<section class="sr-only skills" aria-label="Skills and credentials">
+<h2>Skills and credentials</h2>
+<h3>Core</h3><ul data-group="core">{% for s in page.skills.core %}<li>{{ s }}</li>{% endfor %}</ul>
+<h3>Familiar</h3><ul data-group="familiar">{% for s in page.skills.familiar %}<li>{{ s }}</li>{% endfor %}</ul>
+<h3>Credentials</h3><ul data-group="creds">{% for c in page.credentials %}<li data-short="{{ c.short | escape }}" data-issued="{{ c.issued }}">{{ c.name }}, {{ c.issued }}</li>{% endfor %}</ul>
+</section>
+
+<div class="end">
+<div class="lockup">
+<svg class="lg" viewBox="70 70 450 190" role="img" aria-label="fasai utawan logo"><use href="#fLogo" x="70" y="70" width="450" height="190"></use></svg>
+<div class="uta" aria-hidden="true">utawan</div>
+</div>
+<div class="copy">
+<div class="kick">05 / CONTACT</div>
+<h2 class="h1">{{ page.contact.title }}.</h2>
+</div>
+<div class="hint"><span>SCROLL ↓</span></div>
+</div>
+
+<div class="ov flash flash-s"></div>
+<div class="ov flash flash-c"></div>
+</div>
+</div>
+
+<!-- The same content without motion: shown when motion is reduced or the 3D scene cannot run. -->
+<main class="fb">
+<div class="kick" id="fb-about">ABOUT</div>
+{% for a in page.about %}<p class="en">{{ a.en_title }} {{ a.en }}</p>
+<p class="th" lang="th">{{ a.th_title }} {{ a.th }}</p>
+{% endfor %}
+<h2 id="work">Projects</h2>
+{% for p in page.projects %}<div class="fb-card">
+<span class="badge">{{ p.badge }}</span>
+<h3>{{ p.title }}</h3>
+<p>{{ p.tagline }}</p>
+{% if p.tags.size > 0 %}<div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>{% endif %}
+{% if p.about != "" %}<p>{{ p.about }}</p>{% endif %}
+{% if p.built.size > 0 %}<ul>{% for b in p.built %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+<div class="links">{% for l in p.links %}<a class="btn" href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}</div>
+</div>
+{% endfor %}
+<p><a href="{{ page.contact.github }}" target="_blank" rel="noopener">More on GitHub</a></p>
+<h2 id="fb-skills">Skills &amp; credentials</h2>
+<p>Core: {{ page.skills.core | join: " · " }}</p>
+<p>Familiar: {{ page.skills.familiar | join: " · " }}</p>
+<ul class="creds">{% for c in page.credentials %}<li>{% if c.url != "" %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}<small>{{ c.issued }} · {{ c.source }}</small></li>{% endfor %}</ul>
+</main>
+
+<section id="contact" class="contact" aria-labelledby="contact-title">
+<div class="ct-in">
+<div class="ct-l">
+<div class="kick">05 / CONTACT</div>
+<h2 id="contact-title" tabindex="-1">{{ page.contact.title }}</h2>
+<p>{{ page.contact.text }}</p>
+<div class="btns" style="justify-content: flex-start">
+<a class="btn btn-p" href="{{ page.contact.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn" href="{{ page.contact.github }}" target="_blank" rel="noopener">GitHub</a>
+<a class="btn" href="{{ page.contact.cv | relative_url }}">View CV</a>
+</div>
+</div>
+</div>
+<footer class="foot"><span>© 2026 Fasai Utawan</span><a href="#top" data-go="0">Back to top ↑</a></footer>
+</section>
+</div>
+</body>
+</html>
