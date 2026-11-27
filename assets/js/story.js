@@ -19,8 +19,8 @@
       this._scheme = window.matchMedia('(prefers-color-scheme: light)');
       this.state.lang = lang;
       this.state.sysLight = this._scheme.matches;
-      // Phones: project details start collapsed behind a "Details" toggle.
-      if (window.matchMedia('(max-width: 760px)').matches) {
+      // Phones (upright or sideways): project details start collapsed behind a "Details" toggle.
+      if (window.matchMedia('(max-width: 760px), (max-height: 500px)').matches) {
         document.querySelectorAll('.det').forEach((d) => d.removeAttribute('open'));
       }
       // The colour-mode debug panel only shows with ?debug=mode in the address.
@@ -104,7 +104,7 @@
       sunStart: 80, sunEnd: -70, nightEnd: 1
     },
     light: {
-      clear: 0xdbe8fa, fogA: 0xdbe8fa, fogB: 0xdbe8fa, fog: [0.0032, 0.0027],
+      clear: 0xdbe8fa, fogA: 0xdbe8fa, fogB: 0xdbe8fa, fog: [0.0027, 0.0027],
       sky: [
         'uniform float uNight; varying vec3 vP;',
         'void main() {',
@@ -196,6 +196,9 @@
       const wantLight = forced === 'auto' ? window.matchMedia('(prefers-color-scheme: light)').matches : forced === 'light';
       const T = wantLight ? TH.light : TH.dark;
       const mobile = window.matchMedia('(max-width: 760px)').matches || window.matchMedia('(pointer: coarse)').matches;
+      // Phones held upright get their own framing: billboards and the terminal are placed to fit a tall screen.
+      const portrait = window.innerWidth < window.innerHeight;
+      this._portrait = portrait;
       let renderer;
       try {
         renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !mobile, powerPreference: 'high-performance' });
@@ -361,6 +364,12 @@
       const billData = Array.from(document.querySelectorAll('.panel[data-bill]')).map((el) => el.dataset.bill.split('|'));
       const billZ = [-460, -660, -860].slice(0, Math.max(1, billData.length));
       const billSide = [-1, 1, -1];
+      // How far in front of a billboard the camera stops; further back on a tall screen so the whole sign fits.
+      const BOFF = portrait ? 34 : 26;
+      const billX = portrait ? 7.5 : 11, billTurn = portrait ? 0.28 : 0.45;
+      // On a tall screen the card covers the bottom, so the camera aims below the sign to lift it into the top half.
+      const billDrop = portrait ? 9.5 : 0;
+      const billAim = portrait ? 0.95 : 0.5;
       const nearBill = (side, z, d) => billZ.some((bz, i) => billSide[i] === side && Math.abs(z - bz) < 14 + d / 2);
       const bMax = mobile ? 150 : 280;
       const box = new THREE.BoxGeometry(1, 1, 1);
@@ -446,8 +455,8 @@
         grp.add(hal);
         grp.add(new THREE.Mesh(new THREE.PlaneGeometry(16, 10), new THREE.MeshBasicMaterial({ map: t, transparent: true, side: THREE.DoubleSide })));
         grp.add(pole);
-        grp.position.set(billSide[i] * 11, 14, z);
-        grp.rotation.y = billSide[i] * -0.45;
+        grp.position.set(billSide[i] * billX, 14, z);
+        grp.rotation.y = billSide[i] * -billTurn;
         scene.add(grp);
         return grp;
       });
@@ -479,12 +488,11 @@
       rgrid.position.y = -5.9;
       room.add(rgrid);
 
-      // Portrait screens (phones) get a vertical monitor with shorter lines.
-      const portrait = window.innerWidth < window.innerHeight;
-      const SW = portrait ? 5 : 8, SH = portrait ? 7.5 : 5, SY = portrait ? 1.0 : 0.6, SZ = -8;
-      const TW = portrait ? 1024 : 2048, TH2 = portrait ? 1536 : 1280;
-      const PAD = portrait ? 52 : 72, TOP = portrait ? 150 : 160;
-      let FS = portrait ? 34 : 44, LH = portrait ? 52 : 62;
+      // Portrait screens (phones) get a tall monitor with short lines and bigger text.
+      const SW = portrait ? 5 : 8, SH = portrait ? 8.2 : 5, SY = portrait ? 0.9 : 0.6, SZ = -8;
+      const TW = portrait ? 1024 : 2048, TH2 = portrait ? 1680 : 1280;
+      const PAD = portrait ? 52 : 72, TOP = portrait ? 170 : 160;
+      let FS = portrait ? 44 : 44, LH = portrait ? 62 : 62;
       const listOf = (g) => Array.from(document.querySelectorAll('.skills [data-group="' + g + '"] li'));
       const wrap = (items, max) => {
         const lines = [];
@@ -576,7 +584,7 @@
       led.position.set(0, SY - SH / 2 - 0.13, SZ - 0.01);
       room.add(led);
       const sglow = glow(0x00e5ff, SW * 2.6, SH * 2.6, 0.22); sglow.position.set(0, SY, SZ - 0.5); room.add(sglow);
-      const DY = portrait ? -3.7 : -2.7;
+      const DY = portrait ? SY - SH / 2 - 0.95 : -2.7;
       const bezelBottom = SY - SH / 2 - 0.25;
       const neckH = bezelBottom - (DY + 0.15);
       const neck = new THREE.Mesh(new THREE.BoxGeometry(0.5, neckH, 0.3), new THREE.MeshBasicMaterial({ color: R.bezel }));
@@ -683,11 +691,11 @@
         return best;
       };
       const uCity = uAtZ(-300);
-      const uStop = billZ.map((z) => uAtZ(z + 26));
+      const uStop = billZ.map((z) => uAtZ(z + BOFF));
 
       const S = { u: 0, pitch: 1, night: 0, sunY: T.sunStart, mode: 0, roomT: 0, type: 0, zoom: 0 };
       const ptr = { x: 0, y: 0, tx: 0, ty: 0 };
-      const tmpP = new THREE.Vector3(), tmpA = new THREE.Vector3(), look = new THREE.Vector3(), up = new THREE.Vector3();
+      const tmpP = new THREE.Vector3(), tmpA = new THREE.Vector3(), look = new THREE.Vector3(), up = new THREE.Vector3(), aim = new THREE.Vector3();
 
       const render = () => {
         ptr.x += (ptr.tx - ptr.x) * 0.06; ptr.y += (ptr.ty - ptr.y) * 0.06;
@@ -696,8 +704,9 @@
           path.getPointAt(Math.min(1, S.u + 0.015), tmpA);
           look.copy(tmpA);
           bills.forEach((b) => {
-            const w = Math.exp(-Math.pow((tmpP.z - (b.position.z + 24)) / 45, 2));
-            look.lerp(b.position, w * 0.5);
+            const w = Math.exp(-Math.pow((tmpP.z - (b.position.z + BOFF - 2)) / 45, 2));
+            aim.copy(b.position); aim.y -= billDrop;
+            look.lerp(aim, w * billAim);
           });
           up.set(tmpP.x, tmpP.y + 260, tmpP.z - 480);
           look.lerp(up, S.pitch);
@@ -706,8 +715,10 @@
           camera.lookAt(look);
         } else {
           const tanH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-          const fitD = Math.max((SH / 2 + 1.4) / tanH, (SW / 2 + 0.9) / (tanH * camera.aspect));
-          roomTo.set(RX, SY - 0.45, SZ + fitD);
+          const fitD = portrait
+            ? Math.max((SH / 2 + 1.3) / tanH, (SW / 2 + 0.5) / (tanH * camera.aspect))
+            : Math.max((SH / 2 + 1.4) / tanH, (SW / 2 + 0.9) / (tanH * camera.aspect));
+          roomTo.set(RX, SY - (portrait ? 0.1 : 0.45), SZ + fitD);
           roomFrom.set(RX, SY - 0.1, SZ + fitD + 7);
           zoomEnd.copy(curWorld); zoomEnd.z += 0.18;
           tmpP.copy(roomFrom).lerp(roomTo, S.roomT).lerp(zoomEnd, S.zoom);
@@ -747,6 +758,11 @@
 
       this._onResize = () => {
         const w = stage.clientWidth, h = stage.clientHeight;
+        // Turning a phone sideways needs a different layout, so rebuild the scene once it settles.
+        if ((window.innerWidth < window.innerHeight) !== portrait) {
+          clearTimeout(this._flip);
+          this._flip = setTimeout(() => this.restart(), 250);
+        }
         renderer.setSize(w, h, false);
         camera.aspect = w / h;
         camera.fov = w / h < 1 ? 74 : 55;

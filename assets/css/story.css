@@ -122,7 +122,7 @@ body { margin: 0; background: #05031a; }
 .dbg small { color: var(--soft); }
 .skip { position: fixed; z-index: 60; left: 12px; top: -80px; padding: 12px 18px; border-radius: 999px; background: var(--btnp-bg); color: var(--btnp-fg) !important; text-decoration: none; font-weight: 500; }
 .skip:focus { top: max(12px, env(safe-area-inset-top)); }
-.hint { display: flex; align-items: center; gap: 4px; }
+.hint { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
 .hint button { min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: var(--soft); font: inherit; letter-spacing: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 .hint button:hover { color: var(--hover); }
 .cnav { position: fixed; z-index: 40; right: 10px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 2px; }
@@ -132,7 +132,34 @@ body { margin: 0; background: #05031a; }
 .cn-label { position: absolute; right: 38px; top: 50%; transform: translateY(-50%); padding: 4px 10px; border-radius: 6px; background: var(--sheet-bg); color: var(--fg); font: 500 12px/1.2 'JetBrains Mono', monospace; letter-spacing: 0.08em; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
 .cn:hover .cn-label, .cn:focus-visible .cn-label { opacity: 1; }
 .cn:focus-visible { outline: 2px solid var(--hover); outline-offset: -4px; border-radius: 8px; }
-@media (max-width: 760px) { .cnav { right: 2px; } .cn-label { display: none; } }
+/* Phones: chapter dots move to a row at the top so they never sit on top of text. */
+@media (max-width: 760px) {
+  .cnav { top: max(10px, env(safe-area-inset-top)); right: auto; left: 8px; transform: none; flex-direction: row; gap: 0; }
+  .cn { width: 30px; height: 44px; padding: 0; justify-content: center; }
+  .cn-label { display: none; }
+  .hero, .end { padding: 0 6%; }
+  .hero .lockup, .end .lockup { width: min(400px, 82vw); }
+  .hero .btns { display: grid; grid-template-columns: 1fr 1fr; width: min(330px, 100%); }
+  .hero .btns .btn { padding: 10px 12px; }
+  .role { max-width: 330px; }
+  .hint { font-size: 11px; letter-spacing: 0.16em; }
+  .panel .kick { font-size: 12px; }
+}
+/* Phones turned sideways: very little height, so everything gets smaller and details start collapsed. */
+@media (max-height: 500px) and (min-width: 761px) {
+  .hero, .end { gap: 10px; }
+  .hero .lockup, .end .lockup { width: min(320px, 58vh); gap: 6px; }
+  .h1 { font-size: 22px; }
+  .role { font-size: 13px; line-height: 1.5; }
+  .btns { margin-top: 2px; }
+  .btn { min-height: 40px; padding: 8px 16px; font-size: 14px; }
+  .hint { bottom: 4px; }
+  .panel { top: 17%; max-height: 78vh; overflow-y: auto; width: min(420px, 44%); gap: 8px; }
+  .panel h2 { font-size: 26px; }
+  .panel p { font-size: 14px; line-height: 1.55; }
+  .det summary { display: list-item; cursor: pointer; font: 500 13px/1.2 'JetBrains Mono', monospace; letter-spacing: 0.1em; color: var(--kick); min-height: 32px; }
+  .cn { height: 30px; }
+}
 @media (prefers-reduced-motion: reduce) { .rise { animation: none; } .cn-dot { transition: none; } }
 .dbg[hidden] { display: none; }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
