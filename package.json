@@ -3,7 +3,6 @@
     "build:three": "esbuild scripts/three-entry.js --bundle --minify --format=iife --outfile=assets/js/lib/three.slim.min.js"
   },
   "devDependencies": {
-    "playwright": "^1.60.0",
     "esbuild": "^0.28.2",
     "three": "0.187.0"
   }

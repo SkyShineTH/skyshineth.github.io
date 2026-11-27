@@ -10,7 +10,6 @@ Gemfile.lock
 Thumbs.db
 .vscode/
 
-# Node / Playwright (OG screenshot tooling only — not part of the site build)
+# Node (only used to rebuild the slim Three.js file; not part of the site build)
 node_modules/
 package-lock.json
-.playwright/
