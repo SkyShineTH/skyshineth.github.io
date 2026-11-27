@@ -67,6 +67,7 @@
 <button type="button" data-lang="en" aria-pressed="true">EN</button>
 <button type="button" data-lang="th" aria-pressed="false">TH</button>
 </div>
+<button type="button" class="snd" data-sound aria-pressed="false" aria-label="Background music" title="Background music (off by default)"><span aria-hidden="true">♪</span></button>
 
 <header class="hero" id="top">
 <div class="lockup">
@@ -106,7 +107,7 @@
 <div class="th" lang="th"><h2>{{ a.th_title }}</h2><p>{{ a.th }}</p></div>
 </section>
 {% endfor %}
-{% for p in page.projects %}<article class="panel {% cycle 'r', 'l' %} p{{ forloop.index }}" data-bill="{{ p.billboard | join: '|' | escape }}">
+{% for p in page.projects %}<article class="panel {% cycle 'r', 'l' %} p{{ forloop.index }}" data-bill="{{ p.billboard | join: '|' | escape }}"{% if p.bill_image %} data-bill-img="{{ p.bill_image | relative_url }}"{% endif %}>
 <span class="badge">{{ p.badge }}</span>
 <h2>{{ p.title }}</h2>
 <p class="tagline">{{ p.tagline }}</p>
@@ -137,6 +138,7 @@
 <div class="copy">
 <div class="kick">05 / CONTACT</div>
 <h2 class="h1">{{ page.contact.title }}.</h2>
+<div class="btns"><button type="button" class="btn" data-replay><span class="en">Replay the story</span><span class="th" lang="th">ดูเรื่องอีกครั้ง</span>&nbsp;↺</button></div>
 </div>
 <div class="hint"><span>SCROLL ↓</span></div>
 </div>

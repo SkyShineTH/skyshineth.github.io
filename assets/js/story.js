@@ -29,6 +29,8 @@
         if (dbg) dbg.hidden = false;
       }
       document.addEventListener('click', (e) => {
+        if (e.target.closest('[data-replay]')) { window.scrollTo({ top: 0, behavior: 'auto' }); return; }
+        if (e.target.closest('[data-sound]')) { this.toggleSound(); return; }
         const go = e.target.closest('[data-go]');
         if (go) { e.preventDefault(); this.goChapter(Number(go.dataset.go)); return; }
         const lg = e.target.closest('[data-lang]');
@@ -41,6 +43,11 @@
         if (this.state.forced === 'auto') this.restart();
       };
       if (this._scheme.addEventListener) this._scheme.addEventListener('change', onScheme);
+      // Music pauses while the tab is hidden.
+      document.addEventListener('visibilitychange', () => {
+        if (!this._music || !this._snd) return;
+        if (document.hidden) this._music.pause(); else this._music.start();
+      });
       this.apply();
       this.waitBoot(0);
     },
@@ -74,6 +81,65 @@
       this._forced = mode;
       this.setState({ forced: mode });
       this.restart();
+    },
+
+    toggleSound() {
+      this._snd = !this._snd;
+      document.querySelectorAll('[data-sound]').forEach((b) => b.setAttribute('aria-pressed', String(this._snd)));
+      const m = this.music();
+      if (this._snd) m.start(); else m.stop();
+    },
+
+    // A quiet synthwave pad made in the browser (no audio file): Am, F, C, G, four seconds each.
+    music() {
+      if (this._music) return this._music;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) { this._music = { start() {}, stop() {}, pause() {} }; return this._music; }
+      const ac = new AC();
+      const master = ac.createGain(); master.gain.value = 0;
+      const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = 0.7;
+      lp.connect(master); master.connect(ac.destination);
+      const lfo = ac.createOscillator(); lfo.frequency.value = 0.07;
+      const lfoAmt = ac.createGain(); lfoAmt.gain.value = 350;
+      lfo.connect(lfoAmt); lfoAmt.connect(lp.frequency); lfo.start();
+      const chords = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];
+      const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
+      let step = 0, next = 0, timer = null, off = null;
+      const play = (t) => {
+        const ch = chords[step++ % chords.length];
+        ch.concat([ch[0] - 12]).forEach((m, i) => {
+          const bass = i === 3;
+          [-7, 7].forEach((det) => {
+            const o = ac.createOscillator(); o.type = bass ? 'sine' : 'sawtooth';
+            o.frequency.value = hz(m); o.detune.value = det;
+            const g = ac.createGain();
+            const peak = bass ? 0.45 : 0.2;
+            g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(peak, t + 1.4);
+            g.gain.setValueAtTime(peak, t + 3.6); g.gain.linearRampToValueAtTime(0, t + 5.2);
+            o.connect(g); g.connect(lp); o.start(t); o.stop(t + 5.3);
+          });
+        });
+      };
+      const schedule = () => { while (next < ac.currentTime + 0.6) { play(next); next += 4; } };
+      const fade = (to, s) => {
+        const now = ac.currentTime;
+        master.gain.cancelScheduledValues(now); master.gain.setValueAtTime(master.gain.value, now); master.gain.linearRampToValueAtTime(to, now + s);
+      };
+      this._music = {
+        start() {
+          clearTimeout(off);
+          ac.resume();
+          if (!timer) { next = Math.max(next, ac.currentTime + 0.05); schedule(); timer = setInterval(schedule, 250); }
+          fade(0.07, 1.5);
+        },
+        stop() {
+          fade(0, 0.8);
+          clearTimeout(off);
+          off = setTimeout(() => { clearInterval(timer); timer = null; ac.suspend(); }, 900);
+        },
+        pause() { this.stop(); }
+      };
+      return this._music;
     },
 
     themes() {
@@ -132,7 +198,11 @@
     },
 
     waitBoot(n) {
-      if (window.THREE && window.gsap && window.ScrollTrigger) this.boot();
+      // Build the scene when the browser is idle, so the first screen can respond to taps right away.
+      if (window.THREE && window.gsap && window.ScrollTrigger) {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(() => this.boot(), { timeout: 1200 });
+        else setTimeout(() => this.boot(), 150);
+      }
       else if (n < 150) this._timer = setTimeout(() => this.waitBoot(n + 1), 100);
     },
 
@@ -149,6 +219,7 @@
       this._tick = null;
       if (this._onResize) window.removeEventListener('resize', this._onResize);
       if (this._onPointer) window.removeEventListener('pointermove', this._onPointer);
+      if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
       if (this.scene) {
         this.scene.traverse((o) => {
           if (o.geometry) o.geometry.dispose();
@@ -237,6 +308,34 @@
         return s;
       };
 
+      // A soft horizontal streak (bright on the right), used for meteors and the plane's contrail.
+      const streakTex = (() => {
+        const c = document.createElement('canvas');
+        c.width = 256; c.height = 16;
+        const x = c.getContext('2d');
+        const gr = x.createLinearGradient(0, 0, 256, 0);
+        gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.85, 'rgba(255,255,255,0.75)'); gr.addColorStop(1, 'rgba(255,255,255,1)');
+        x.fillStyle = gr; x.fillRect(0, 0, 256, 16);
+        const v = x.createLinearGradient(0, 0, 0, 16);
+        v.addColorStop(0, 'rgba(0,0,0,1)'); v.addColorStop(0.5, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,1)');
+        x.globalCompositeOperation = 'destination-out'; x.fillStyle = v; x.fillRect(0, 0, 256, 16);
+        return new THREE.CanvasTexture(c);
+      })();
+      // A long soft stripe that fades at both ends, laid flat on the ground for reflections.
+      const stripeTex = (() => {
+        const c = document.createElement('canvas');
+        c.width = 32; c.height = 256;
+        const x = c.getContext('2d');
+        const gr = x.createLinearGradient(0, 0, 0, 256);
+        gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+        x.fillStyle = gr; x.fillRect(0, 0, 32, 256);
+        const h = x.createLinearGradient(0, 0, 32, 0);
+        h.addColorStop(0, 'rgba(0,0,0,1)'); h.addColorStop(0.5, 'rgba(0,0,0,0)'); h.addColorStop(1, 'rgba(0,0,0,1)');
+        x.globalCompositeOperation = 'destination-out'; x.fillStyle = h; x.fillRect(0, 0, 32, 256);
+        return new THREE.CanvasTexture(c);
+      })();
+      const fwd = new THREE.Vector3(), rgt = new THREE.Vector3(), upv = new THREE.Vector3();
+
       // Sky dome.
       const skyMat = new THREE.ShaderMaterial({
         side: THREE.BackSide, depthWrite: false, fog: false,
@@ -263,6 +362,40 @@
       stars.visible = T.stars;
       scene.add(stars);
 
+      // Shooting stars (dark mode): now and then a streak crosses the sky ahead of the camera.
+      const meteors = [];
+      if (T.stars) {
+        for (let i = 0; i < 2; i++) {
+          const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: streakTex, color: 0xffe9fb, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }));
+          m.scale.set(150, 3.4, 1);
+          scene.add(m);
+          meteors.push({ s: m, t: 0, wait: 2 + i * 4 + rnd() * 3, life: 0.9, pos: new THREE.Vector3(), dir: new THREE.Vector3() });
+        }
+      }
+      const updMeteors = (dt) => {
+        meteors.forEach((m) => {
+          if (m.t <= 0) {
+            m.wait -= dt;
+            m.s.material.opacity = 0;
+            if (m.wait > 0 || S.mode !== 0) return;
+            // Start somewhere high in front of the camera and fall down and sideways.
+            camera.getWorldDirection(fwd);
+            rgt.setFromMatrixColumn(camera.matrixWorld, 0); upv.setFromMatrixColumn(camera.matrixWorld, 1);
+            const side = rnd() < 0.5 ? -1 : 1;
+            m.pos.copy(camera.position).addScaledVector(fwd, 700).addScaledVector(rgt, side * (60 + rnd() * 260)).addScaledVector(upv, 120 + rnd() * 170);
+            if (m.pos.y < camera.position.y + 80) m.pos.y = camera.position.y + 80 + rnd() * 120;
+            m.dir.copy(rgt).multiplyScalar(-side * 0.85).addScaledVector(upv, -0.5).normalize();
+            m.s.material.rotation = Math.atan2(-0.5, -side * 0.85);
+            m.t = m.life;
+          }
+          m.t -= dt;
+          const k = 1 - m.t / m.life;
+          m.s.position.copy(m.pos).addScaledVector(m.dir, k * 520);
+          m.s.material.opacity = Math.sin(Math.min(1, k) * Math.PI);
+          if (m.t <= 0) { m.s.material.opacity = 0; m.wait = 3 + rnd() * 6; }
+        });
+      };
+
       // Clouds (light mode): placed in the world so they drift past.
       if (T.clouds) {
         const cloudTex = (() => {
@@ -287,6 +420,39 @@
         }
       }
 
+      // A plane drawing a contrail across the sky (light mode).
+      let plane = null;
+      if (T.clouds) {
+        const pc = document.createElement('canvas'); pc.width = 64; pc.height = 32;
+        const px = pc.getContext('2d');
+        px.fillStyle = '#3a4a7a';
+        px.fillRect(10, 14, 46, 4); // body
+        px.beginPath(); px.moveTo(30, 16); px.lineTo(22, 2); px.lineTo(28, 2); px.lineTo(40, 16); px.fill(); // wing
+        px.beginPath(); px.moveTo(30, 16); px.lineTo(22, 30); px.lineTo(28, 30); px.lineTo(40, 16); px.fill();
+        px.beginPath(); px.moveTo(10, 16); px.lineTo(6, 8); px.lineTo(10, 8); px.lineTo(16, 16); px.fill(); // tail
+        const body = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(pc), transparent: true, depthWrite: false, fog: false }));
+        body.scale.set(16, 8, 1);
+        const trail = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: streakTex, color: 0xffffff, transparent: true, opacity: 0.85, depthWrite: false, fog: false }));
+        scene.add(body); scene.add(trail);
+        plane = { body: body, trail: trail, t: 4 };
+      }
+      const updPlane = (dt) => {
+        if (!plane) return;
+        plane.t += dt;
+        const span = 26, k = (plane.t % span) / span;
+        const show = S.mode === 0;
+        plane.body.visible = plane.trail.visible = show;
+        if (!show) return;
+        // The sky moves with the camera, so the plane is placed relative to it.
+        const hx = -460 + k * 920, hy = 300 + k * 40, hz = -620;
+        plane.body.position.set(camera.position.x + hx, hy, camera.position.z + hz);
+        const L = Math.min(380, k * 920);
+        plane.trail.scale.set(Math.max(0.01, L), 3.2, 1);
+        plane.trail.position.set(camera.position.x + hx - 10 - L / 2, hy - 0.4 - (L / 920) * 20, camera.position.z + hz - 1);
+        plane.trail.rotation.z = Math.atan2(40, 920);
+        plane.trail.material.opacity = 0.8 * Math.min(1, (1 - k) * 6);
+      };
+
       // The striped sun, kept at a fixed distance in front of the camera.
       const sunMat = new THREE.ShaderMaterial({
         transparent: true, depthWrite: false, fog: false,
@@ -309,6 +475,16 @@
       sunG.add(halo);
       sunG.add(new THREE.Mesh(new THREE.PlaneGeometry(300, 300), sunMat));
       scene.add(sunG);
+
+      // Sunlight reflected on the grid floor, a long stripe running toward the sun.
+      const glint = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({
+        map: stripeTex, color: T.stars ? 0xff6aa8 : 0xffc98a, transparent: true, opacity: 0, depthWrite: false, fog: false,
+        blending: T.stars ? THREE.AdditiveBlending : THREE.NormalBlending
+      }));
+      glint.rotation.x = -Math.PI / 2;
+      glint.scale.set(34, 900, 1);
+      glint.renderOrder = 1;
+      scene.add(glint);
 
       // Terrain with a flat road, mountains on both sides, pushed back inside the city.
       const segX = mobile ? 60 : 100, segZ = mobile ? 150 : 260;
@@ -361,7 +537,10 @@
         return t;
       })();
       // Billboard spots, known before the city is built so towers can leave room for them.
-      const billData = Array.from(document.querySelectorAll('.panel[data-bill]')).map((el) => el.dataset.bill.split('|'));
+      const billEls = Array.from(document.querySelectorAll('.panel[data-bill]'));
+      const billData = billEls.map((el) => el.dataset.bill.split('|'));
+      // A sign can show a picture of the project (data-bill-img) instead of big text.
+      const billImg = billEls.map((el) => el.dataset.billImg || '');
       const billZ = [-460, -660, -860].slice(0, Math.max(1, billData.length));
       const billSide = [-1, 1, -1];
       // How far in front of a billboard the camera stops; further back on a tall screen so the whole sign fits.
@@ -420,20 +599,137 @@
         : new THREE.PointsMaterial({ size: 2.4, map: glowTex, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
       scene.add(new THREE.Points(tg, trafficMat));
 
+      // Dust drifting past the camera, so the flight feels fast. It wraps around the camera as it moves.
+      const dustN = mobile ? 90 : 200;
+      const dp = new Float32Array(dustN * 3);
+      for (let i = 0; i < dustN; i++) { dp[i * 3] = (rnd() - 0.5) * 28; dp[i * 3 + 1] = 1 + rnd() * 12; dp[i * 3 + 2] = 70 - rnd() * 90; }
+      const dgeo = new THREE.BufferGeometry();
+      dgeo.setAttribute('position', new THREE.BufferAttribute(dp, 3));
+      const dust = new THREE.Points(dgeo, new THREE.PointsMaterial({
+        size: 0.14, map: glowTex, color: T.stars ? 0xffc2ec : 0x7f95d6, transparent: true, opacity: T.stars ? 0.8 : 0.55, depthWrite: false,
+        blending: T.stars ? THREE.AdditiveBlending : THREE.NormalBlending
+      }));
+      scene.add(dust);
+      const wrapAround = (arr, n, c, bx, y0, y1, zf, zb) => {
+        for (let i = 0; i < n; i++) {
+          const o = i * 3;
+          if (arr[o + 2] - c.z > zf) arr[o + 2] -= zf - zb; else if (arr[o + 2] - c.z < zb) arr[o + 2] += zf - zb;
+          if (arr[o] - c.x > bx) arr[o] -= bx * 2; else if (arr[o] - c.x < -bx) arr[o] += bx * 2;
+          if (arr[o + 1] - c.y > y1) arr[o + 1] -= y1 - y0; else if (arr[o + 1] - c.y < y0) arr[o + 1] += y1 - y0;
+        }
+      };
+
+      // Rain over the city at night (dark mode).
+      let rain = null;
+      if (T.stars) {
+        const rainN = mobile ? 260 : 600;
+        const rp = new Float32Array(rainN * 6);
+        for (let i = 0; i < rainN; i++) {
+          const x = (rnd() - 0.5) * 60, y = rnd() * 40, z = -330 - rnd() * 80;
+          rp.set([x, y, z, x + 0.15, y - 1.8, z], i * 6);
+        }
+        const rgeo = new THREE.BufferGeometry();
+        rgeo.setAttribute('position', new THREE.BufferAttribute(rp, 3));
+        rain = new THREE.LineSegments(rgeo, new THREE.LineBasicMaterial({ color: 0xa9b8ff, transparent: true, opacity: 0, depthWrite: false }));
+        rain.userData.n = rainN;
+        scene.add(rain);
+
+        // Wet road: neon colour smeared on the ground between the towers.
+        const wet = new THREE.Group();
+        for (let z = -340; z > -1130; z -= 14 + rnd() * 18) {
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({
+            map: stripeTex, color: rnd() < 0.5 ? 0x00e5ff : 0xff2e97, transparent: true, opacity: 0.16 + rnd() * 0.14, depthWrite: false, blending: THREE.AdditiveBlending
+          }));
+          m.rotation.x = -Math.PI / 2;
+          m.scale.set(1.4 + rnd() * 2.2, 18 + rnd() * 26, 1);
+          m.position.set((rnd() < 0.5 ? -1 : 1) * (1.5 + rnd() * 9), 0.12, z);
+          wet.add(m);
+        }
+        scene.add(wet);
+      }
+      const rainAt = (cz) => smooth(-260, -380, cz) * (1 - smooth(-1080, -1150, cz));
+      const updRain = (dt) => {
+        if (!rain) return;
+        const a = rain.geometry.attributes.position.array;
+        const n = rain.userData.n;
+        const c = camera.position;
+        for (let i = 0; i < n; i++) {
+          const o = i * 6;
+          a[o + 1] -= 70 * dt; a[o + 4] -= 70 * dt;
+          if (a[o + 1] - c.y < -10) { const y = c.y + 30 + Math.random() * 6; a[o + 1] = y; a[o + 4] = y - 1.8; }
+          if (a[o + 2] - c.z > 6) { const z = a[o + 2] - 86; a[o + 2] = z; a[o + 5] = z; } else if (a[o + 2] - c.z < -80) { const z = a[o + 2] + 86; a[o + 2] = z; a[o + 5] = z; }
+          if (a[o] - c.x > 30) { a[o] -= 60; a[o + 3] -= 60; } else if (a[o] - c.x < -30) { a[o] += 60; a[o + 3] += 60; }
+        }
+        rain.geometry.attributes.position.needsUpdate = true;
+        rain.visible = S.mode === 0;
+        rain.material.opacity = 0.55 * rainAt(c.z);
+      };
+
+      // Birds over the city (light mode): small flocks flapping across the avenue.
+      let birds = null;
+      if (T.clouds) {
+        const flocks = [[-430, 36], [-640, 44], [-880, 40]];
+        const perFlock = 5;
+        const bn = flocks.length * perFlock;
+        const bp = new Float32Array(bn * 12);
+        const bgeo = new THREE.BufferGeometry();
+        bgeo.setAttribute('position', new THREE.BufferAttribute(bp, 3));
+        birds = new THREE.LineSegments(bgeo, new THREE.LineBasicMaterial({ color: 0x3a4a7a }));
+        birds.userData = { flocks: flocks, per: perFlock, off: Array.from({ length: bn }, () => [rnd() * 6 - 3, rnd() * 3, rnd() * 4 - 2, rnd() * 6]) };
+        birds.frustumCulled = false;
+        scene.add(birds);
+      }
+      let clock = 0;
+      const updBirds = () => {
+        if (!birds) return;
+        const u = birds.userData, a = birds.geometry.attributes.position.array;
+        u.flocks.forEach((f, fi) => {
+          const cx = -70 + (((clock * 4 + fi * 47) % 140) + 140) % 140;
+          for (let j = 0; j < u.per; j++) {
+            const i = fi * u.per + j, o = u.off[i], b = i * 12;
+            const x = cx - j * 2.2 + o[0], y = f[1] + o[1] + (j % 2) * 1.2, z = f[0] + o[2];
+            const flap = Math.sin(clock * 9 + o[3]) * 0.55;
+            a.set([x - 0.9, y + flap, z, x, y, z, x, y, z, x + 0.9, y + flap, z], b);
+          }
+        });
+        birds.geometry.attributes.position.needsUpdate = true;
+        birds.visible = S.mode === 0;
+      };
+
       // Three project billboards.
       const billTex = [];
+      const billPics = [];
       const drawBill = (i) => {
         const c = billTex[i].image;
         const x = c.getContext('2d');
+        x.setTransform(2, 0, 0, 2, 0, 0);
         const col = T.billCols[i % 2];
         x.clearRect(0, 0, 512, 320);
         x.fillStyle = T.billBg; x.fillRect(0, 0, 512, 320);
+        const words = billData[i] || ['PROJECT', '0' + (i + 1)];
+        const pic = billPics[i];
+        if (pic && pic.complete && pic.naturalWidth) {
+          // Picture fills the sign; a dark band at the top keeps the label readable.
+          const ar = 496 / 304, ir = pic.naturalWidth / pic.naturalHeight;
+          let sw = pic.naturalWidth, sh = pic.naturalHeight, sx = 0, sy = 0;
+          if (ir > ar) { sw = sh * ar; sx = (pic.naturalWidth - sw) / 2; } else { sh = sw / ar; sy = (pic.naturalHeight - sh) / 2; }
+          x.drawImage(pic, sx, sy, sw, sh, 8, 8, 496, 304);
+          const band = x.createLinearGradient(0, 8, 0, 118);
+          band.addColorStop(0, 'rgba(8,6,28,0.96)'); band.addColorStop(0.6, 'rgba(8,6,28,0.82)'); band.addColorStop(1, 'rgba(8,6,28,0)');
+          x.fillStyle = band; x.fillRect(8, 8, 496, 110);
+          x.fillStyle = col; x.font = '500 18px "JetBrains Mono", monospace';
+          x.fillText('PROJECT 0' + (i + 1), 28, 46);
+          x.fillStyle = '#f6e9ff'; x.font = '700 34px "Space Grotesk", sans-serif';
+          x.fillText(words[0] + (words[1] ? '  ·  ' + words[1] : ''), 28, 86);
+          x.strokeStyle = col; x.lineWidth = 6; x.strokeRect(8, 8, 496, 304);
+          billTex[i].needsUpdate = true;
+          return;
+        }
         x.fillStyle = T.billLine;
         for (let y = 0; y < 320; y += 4) x.fillRect(0, y, 512, 1);
         x.strokeStyle = col; x.lineWidth = 6; x.strokeRect(8, 8, 496, 304);
         x.fillStyle = col; x.font = '500 24px "JetBrains Mono", monospace';
         x.fillText('PROJECT 0' + (i + 1), 36, 64);
-        const words = billData[i] || ['PROJECT', '0' + (i + 1)];
         let size = 76;
         x.font = '700 ' + size + 'px "Space Grotesk", sans-serif';
         while (size > 40 && Math.max(x.measureText(words[0]).width, x.measureText(words[1] || '').width) > 440) {
@@ -444,9 +740,18 @@
         billTex[i].needsUpdate = true;
       };
       const bills = billZ.map((z, i) => {
-        const c = document.createElement('canvas'); c.width = 512; c.height = 320;
+        const c = document.createElement('canvas'); c.width = 1024; c.height = 640;
         const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
-        billTex.push(t); drawBill(i);
+        t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        billTex.push(t);
+        if (billImg[i]) {
+          const pic = new Image();
+          pic.decoding = 'async';
+          pic.onload = () => { if (this.scene === scene) drawBill(i); };
+          pic.src = billImg[i];
+          billPics[i] = pic;
+        }
+        drawBill(i);
         const grp = new THREE.Group();
         const hal = glow(T.billHalo !== null ? T.billHalo : (i % 2 ? 0xff2e97 : 0x00e5ff), 30, 20, T.billHalo !== null ? 0.5 : 0.35);
         hal.position.z = -0.4;
@@ -671,6 +976,69 @@
       const wndFrame = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(7, 4)), new THREE.LineBasicMaterial({ color: R.edge }));
       wndFrame.position.copy(wnd.position); room.add(wndFrame);
 
+      // Certificate frame on the back wall (wide screens), from the first credential in the list.
+      if (!portrait && creds.length) {
+        const fc = document.createElement('canvas'); fc.width = 512; fc.height = 512;
+        const fx = fc.getContext('2d');
+        fx.fillStyle = R.wall === 0x07051a ? '#0d0a24' : '#ffffff'; fx.fillRect(0, 0, 512, 512);
+        const hex = (r) => { fx.beginPath(); for (let k = 0; k < 6; k++) { const an = Math.PI / 6 + k * Math.PI / 3; fx[k ? 'lineTo' : 'moveTo'](256 + r * Math.cos(an), 210 + r * Math.sin(an)); } fx.closePath(); };
+        const hg = fx.createLinearGradient(0, 80, 0, 340);
+        hg.addColorStop(0, '#ffd23f'); hg.addColorStop(1, '#ff2e97');
+        hex(140); fx.fillStyle = hg; fx.fill();
+        hex(118); fx.fillStyle = '#14123a'; fx.fill();
+        fx.textAlign = 'center'; fx.fillStyle = '#f6e9ff';
+        fx.font = '700 30px "Space Grotesk", sans-serif'; fx.fillText('CERTIFIED', 256, 200);
+        fx.font = '500 20px "JetBrains Mono", monospace'; fx.fillStyle = '#ffd23f'; fx.fillText(creds[0].issued || '', 256, 238);
+        fx.fillStyle = R.wall === 0x07051a ? '#f6e9ff' : '#14123a'; fx.font = '700 28px "Space Grotesk", sans-serif';
+        fx.fillText(creds[0].name || '', 256, 420);
+        const ft = new THREE.CanvasTexture(fc); ft.colorSpace = THREE.SRGBColorSpace;
+        const frame = new THREE.Group();
+        frame.add(new THREE.Mesh(new THREE.BoxGeometry(3.6, 3.6, 0.12), new THREE.MeshBasicMaterial({ color: R.bezel })));
+        const art = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 3.2), new THREE.MeshBasicMaterial({ map: ft }));
+        art.position.z = 0.07; frame.add(art);
+        const fe = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(3.6, 3.6, 0.12)), new THREE.LineBasicMaterial({ color: R.accent }));
+        frame.add(fe);
+        frame.position.set(9.7, 2.9, -14.85);
+        room.add(frame);
+      }
+
+      // Sticky notes on the right edge of the monitor, clear of the terminal text.
+      [['ship small', '#ffe066', SY + SH / 2 - 0.35, 0.1], ['read the logs', '#ff9ad5', SY + SH / 2 - 1.35, -0.08]].forEach((n) => {
+        const nc = document.createElement('canvas'); nc.width = 256; nc.height = 256;
+        const nx = nc.getContext('2d');
+        nx.fillStyle = n[1]; nx.fillRect(0, 0, 256, 256);
+        nx.fillStyle = 'rgba(0,0,0,0.08)'; nx.fillRect(0, 0, 256, 34);
+        nx.fillStyle = '#2a1f4a'; nx.font = '700 40px "Space Grotesk", sans-serif'; nx.textAlign = 'center';
+        const parts = n[0].split(' ');
+        parts.forEach((w, k) => nx.fillText(w, 128, 120 + k * 50 - (parts.length - 1) * 25));
+        const nt = new THREE.CanvasTexture(nc); nt.colorSpace = THREE.SRGBColorSpace;
+        // On a tall screen the monitor fills the width, so the notes sit just inside its right edge.
+        const ns = portrait ? 0.7 : 0.85;
+        const note = new THREE.Mesh(new THREE.PlaneGeometry(ns, ns), new THREE.MeshBasicMaterial({ map: nt }));
+        note.position.set(portrait ? SW / 2 - 0.28 : SW / 2 + 0.12, n[2], SZ + 0.04);
+        note.rotation.z = n[3];
+        room.add(note);
+      });
+
+      // A small plant on the desk (light mode).
+      if (T.clouds) {
+        const plant = new THREE.Group();
+        const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.26, 0.55, 20), new THREE.MeshBasicMaterial({ color: 0xff8fb1 }));
+        pot.position.y = 0.28; plant.add(pot);
+        const soil = new THREE.Mesh(new THREE.CylinderGeometry(0.31, 0.31, 0.04, 20), new THREE.MeshBasicMaterial({ color: 0x5a4a3a }));
+        soil.position.y = 0.54; plant.add(soil);
+        const leafG = new THREE.SphereGeometry(0.5, 10, 8);
+        [[0, 0.12, 0x3fbf7f], [1.1, 0.25, 0x2fa86c], [2.2, 0.18, 0x4fd18f], [3.3, 0.3, 0x2fa86c], [4.4, 0.15, 0x3fbf7f], [5.5, 0.22, 0x4fd18f]].forEach((l) => {
+          const leaf = new THREE.Mesh(leafG, new THREE.MeshBasicMaterial({ color: l[2] }));
+          leaf.scale.set(0.16, 0.62 + l[1], 0.08);
+          leaf.position.set(Math.cos(l[0]) * 0.12, 0.95 + l[1] * 0.3, Math.sin(l[0]) * 0.12);
+          leaf.rotation.set(Math.sin(l[0]) * 0.45, 0, Math.cos(l[0]) * 0.45);
+          plant.add(leaf);
+        });
+        plant.position.set(portrait ? 1.9 : 6.0, DY + 0.15, portrait ? -6.6 : -6.5);
+        room.add(plant);
+      }
+
       [[-12, 0xff2e97], [12, 0x00e5ff]].forEach((a) => {
         const t = new THREE.Mesh(new THREE.BoxGeometry(0.25, 10, 0.25), new THREE.MeshBasicMaterial({ color: a[1] }));
         t.position.set(a[0], 0, -10); room.add(t);
@@ -731,6 +1099,9 @@
         sky.position.copy(camera.position);
         stars.position.copy(camera.position);
         sunG.position.set(camera.position.x, S.sunY, camera.position.z - 1400);
+        glint.position.set(camera.position.x, 0.2, camera.position.z - 470);
+        glint.visible = S.mode === 0;
+        glint.material.opacity = (T.stars ? 0.45 : 0.3) * smooth(-40, 60, S.sunY) * (1 - S.night * 0.85) * (1 - smooth(-300, -420, camera.position.z));
         skyMat.uniforms.uNight.value = S.night;
         scene.fog.color.copy(fogA).lerp(fogB, S.night);
         const n = Math.floor(S.type * totalChars);
@@ -739,11 +1110,19 @@
       };
 
       let last = performance.now();
+      // While nobody is scrolling, draw every third frame only; this saves battery and frees the main thread.
+      let lastScroll = 0, frame = 0, slow = 0, slowN = 0;
+      this._onScroll = () => { lastScroll = performance.now(); };
+      window.addEventListener('scroll', this._onScroll, { passive: true });
       this._tick = () => {
         const now = performance.now();
+        frame++;
+        if (now - lastScroll > 900 && frame % 3 !== 0) return;
         const dt = Math.min(0.05, (now - last) / 1000); last = now;
         const r = story.getBoundingClientRect();
         if (r.bottom < 0 || r.top > window.innerHeight) return;
+        // If drawing is slow on this device, drop to 1x pixel density once.
+        if (slowN < 40 && now - lastScroll < 900) { slow += dt; slowN++; if (slowN === 40 && slow / 40 > 0.04 && renderer.getPixelRatio() > 1) { renderer.setPixelRatio(1); this._onResize(); } }
         const a = tg.attributes.position;
         for (let i = 0; i < trN; i++) {
           let z = a.getZ(i) + tv[i] * dt;
@@ -752,7 +1131,14 @@
         }
         a.needsUpdate = true;
         starMat.opacity = 0.75 + Math.sin(now * 0.0015) * 0.15;
+        clock += dt;
         render();
+        // Effects that follow the camera are updated after it has moved.
+        wrapAround(dp, dustN, camera.position, 14, -3, 10, 6, -84);
+        for (let i = 0; i < dustN; i++) dp[i * 3 + 1] += Math.sin(now * 0.0007 + i) * 0.004;
+        dgeo.attributes.position.needsUpdate = true;
+        dust.visible = S.mode === 0;
+        updMeteors(dt); updPlane(dt); updRain(dt); updBirds();
       };
       g.ticker.add(this._tick);
 
@@ -844,6 +1230,7 @@
           .to('.flash-s', { opacity: 0, duration: 0.45 }, 16.4 + D)
           .set(S, { mode: 0, u: 0, pitch: 1, sunY: T.sunStart, night: 0 }, 16.35 + D)
           .to('.end', { autoAlpha: 1, duration: 0.25 }, 16.35 + D)
+          .set('.end', { pointerEvents: 'auto' }, 17.4 + D)
           .fromTo('.end .lg', { scale: 38 }, { scale: 1, ease: 'power3.out', duration: 1.2, immediateRender: false }, 16.35 + D)
           .fromTo('.end .copy, .end .uta, .end .hint', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 17.3 + D)
           .to({}, { duration: 0.6 }, 17.7 + D);
