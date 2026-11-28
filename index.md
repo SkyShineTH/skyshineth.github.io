@@ -44,6 +44,23 @@ projects:
         url: "https://github.com/SkyShineTH/Shipyard"
       - label: "Case study"
         url: "https://github.com/SkyShineTH/Shipyard/blob/main/docs/doks-live-demo.md"
+  - title: "FaceRatioOps"
+    billboard: ["FACERATIOOPS"]
+    bill_image: "/assets/images/projects/faceratioops-billboard.webp"
+    badge: "Personal project · Demo decommissioned"
+    tagline: "A privacy-first AI inference API for facial geometry analysis."
+    tags: ["Python", "FastAPI", "MediaPipe", "React", "Docker", "Prometheus"]
+    about: "FaceRatioOps reads face landmarks with MediaPipe and returns geometric ratios, with a React workbench to explore the result. Images are processed in memory and never logged, and it makes no identity or attractiveness claims. It ran on a DigitalOcean server with monitoring until the demo was shut down on 9 Jul 2026."
+    built:
+      - "A FastAPI inference service with health, model-info and metrics endpoints"
+      - "A React + TypeScript workbench served from the same container"
+      - "GitHub Actions delivery to GHCR with health checks, CodeQL and Trivy scans"
+    learned: []  # TODO: one thing, in your own words
+    links:
+      - label: "GitHub"
+        url: "https://github.com/SkyShineTH/FaceRatioOps"
+      - label: "Case study"
+        url: "https://github.com/SkyShineTH/FaceRatioOps#project-status-decommissioned"
   - title: "Coming soon"
     billboard: ["NEXT", "SOON"]
     badge: "In progress"
